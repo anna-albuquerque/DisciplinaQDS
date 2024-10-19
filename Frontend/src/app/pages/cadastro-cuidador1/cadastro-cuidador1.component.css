@@ -1,0 +1,115 @@
+.container {
+    display: flex;
+    width: 100vw;
+}
+
+.container .imagem-lateral {
+    width: 575px;
+    height: 100vh; /* Garante que a imagem tenha a altura completa da tela */
+    display: flex;
+    align-items: center; /* Centraliza a imagem verticalmente */
+    justify-content: center; /* Centraliza a imagem horizontalmente */
+}
+
+.container .imagem-lateral .imagem1 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que a imagem cubra toda a área sem distorção */
+}
+
+.container .box-form {
+    width: calc(100vw - 575px);
+    height: 100vh; /* Garante que o formulário tenha a altura completa da tela */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px; /* Adiciona espaçamento interno */
+    box-sizing: border-box;
+    background-color: #f9f9f9; /* Adiciona uma cor de fundo leve para diferenciação */
+    overflow-y: auto; /* Adiciona rolagem se o conteúdo exceder a altura do formulário */
+}
+
+.stepper {
+    width: 100%;
+    margin-bottom: 20px; /* Espaçamento entre o stepper e o restante do conteúdo */
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.step {
+    text-align: center;
+    padding: 10px 0;
+    font-family: 'Inter', sans-serif;
+    color: #5f6062;
+}
+
+.step.active {
+    font-weight: bold;
+    border-bottom: 2px solid #D2657F;
+}
+
+.step.complete {
+    color: #D2657F;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    max-width: 500px; /* Ajusta a largura máxima do formulário */
+    box-sizing: border-box;
+}
+
+.form-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.input-group {
+    flex-basis: calc(50% - 5px);
+    display: flex;
+    flex-direction: column;
+}
+
+.container .form-group label {
+    font-family: 'Inter', sans-serif;
+    color: #5f6062;
+}
+
+.container .box-half {
+    display: flex;
+    gap: 15px;
+}
+
+.container .box-half .form-group {
+    width: 50%;
+}
+
+.container .form-group input,
+.container .form-group select {
+    width: 100%;
+    border-radius: 10px;
+    background-color: #cbcdd0;
+    padding: 10px 15px;
+    border: none;
+    color: #6b6e72;
+    box-sizing: border-box;
+}
+
+.container .box-form .box-btn {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    margin-top: 10px;
+}
+
+button {
+    background-color: #D2657F;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    padding: 10px 15px;
+}

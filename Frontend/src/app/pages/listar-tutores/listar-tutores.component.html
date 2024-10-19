@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="paragrafo">
+        <h2>Aqui estão nossos tutores</h2>
+    </div>
+    <div class="lista">
+        <ul>
+            <li *ngFor="let tutor of tutors" class="teste3">
+                <app-card-tutores [tutor]="tutor"></app-card-tutores>
+            </li>
+        </ul>
+    </div>
+
+</div>
+<!-- [sobrenome]={{cuidador.sobrenome}}
+[telefone]={{cuidador.telefone}}
+[endereco]={{cuidador.endereco}}> -->
