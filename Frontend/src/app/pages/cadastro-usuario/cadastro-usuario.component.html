@@ -1,0 +1,33 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <h2>Cadastro de Usuário</h2>
+    
+    <div>
+      <label for="username">Username:</label>
+      <input type="text" id="username" [(ngModel)]="username" name="username" required />
+    </div>
+    
+    <div>
+      <label for="password">Password:</label>
+      <input type="password" id="password" [(ngModel)]="password" name="password" required />
+    </div>
+    
+    <div>
+      <label for="confirmPassword">Confirm Password:</label>
+      <input 
+        type="password" 
+        id="confirmPassword" 
+        [(ngModel)]="confirmPassword" 
+        name="confirmPassword" 
+        required 
+        (ngModelChange)="checkPasswords()"
+      />
+      <div *ngIf="password !== confirmPassword && confirmPassword !== ''" class="error">
+        As senhas não correspondem.
+      </div>
+    </div>
+  
+    <button type="submit" [disabled]="password !== confirmPassword">Cadastrar</button>
+    
+    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+  </form>
+  
