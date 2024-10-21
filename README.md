@@ -8,16 +8,19 @@ O projeto Nanny's Pets tem como objetivo desenvolver um sistema para o serviço 
 
 # Equipe e Formas de Contato
 
+Versão 2.1
+1. Anna Carolinne - [GitHub](https://github.com/anna-albuquerque)
+</br>
+
 Versão 2.0 
 1. Anna Carolinne - [GitHub](https://github.com/anna-albuquerque) 
 2. Joana Fernandes - [Github](https://github.com/JoanaFernandes1998)
 3. Renato Bernardino - [GitHub](https://github.com/renatobernardinodasilva)
 4. Virgínia Cláudia - [GitHub](https://github.com/VCLM)
 5. Wemerson Chagas - [Github](https://github.com/wemersonchaga)
-
 **Orientador:** Plácido Neto - [GitHub](https://github.com/placidoneto)
-
 </br>
+
 
 # Ferramentas e tecnologias utilizadas no desenvolvimento do projeto:
 
