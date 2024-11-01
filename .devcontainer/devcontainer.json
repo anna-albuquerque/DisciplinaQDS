@@ -15,8 +15,8 @@
     }
 },
 "features": {
-	"ghcr.io/hspaans/devcontainer-features/django-upgrade:1": {},
-	"ghcr.io/devcontainers-extra/features/angular-cli:2": {}
+  "ghcr.io/hspaans/devcontainer-features/django-upgrade:1": {},
+  "ghcr.io/devcontainers-extra/features/angular-cli:2": {}
 
 }
 }
