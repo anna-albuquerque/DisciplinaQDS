@@ -5,35 +5,22 @@ on:
   pull_request:
 
 jobs:
-  check-duplication:
+  build:
     runs-on: ubuntu-latest
-  
+
     steps:
       - uses: actions/checkout@v4.2.1
-
-      - name: Set up Python 3.12
-        uses: actions/setup-python@v5.2.0
-        with:
-          python-version: 3.12
-
-      - name: Install dependencies
-        run: |
-          pip install --upgrade pip
-          pip install -r requirements.txt
-          
-      - name: Install pytest
-        run: pip install pytest
 
       - name: Run tests
         run: |
           pytest Backend/tests/
-
+      
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '11'
-  
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
@@ -41,7 +28,7 @@ jobs:
 
       - name: Install Node.js dependencies
         run: npm install
-      
+
       - name: Run Node.js script
         run: node main.js    
 
@@ -49,7 +36,7 @@ jobs:
         run: |
           wget https://github.com/pmd/pmd/releases/download/pmd_releases%2F6.49.0/pmd-bin-6.49.0.zip
           unzip -o pmd-bin-6.49.0.zip
-  
+      
       - name: Run CPD to Check for Duplicate Code
         run: |
           java -cp "./pmd-bin-6.49.0/lib/*" net.sourceforge.pmd.cpd.CPD --minimum-tokens 100 --files ./Backend/nanny_pets_app --language python --format text --exclude ./Backend/nanny_pets_app/migrations
