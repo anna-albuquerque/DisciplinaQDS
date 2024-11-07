@@ -34,6 +34,11 @@ jobs:
           distribution: 'temurin'
           java-version: '11'
   
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # Ou a versão mais recente do Node.js
+        
       - name: Download PMD
         run: |
           wget https://github.com/pmd/pmd/releases/download/pmd_releases%2F6.49.0/pmd-bin-6.49.0.zip
