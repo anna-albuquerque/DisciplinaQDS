@@ -22,12 +22,14 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
           
-      - name: Verify pytest installation
+      - name: Check Python and pytest installation
         run: |
-          python -m pip show pytest  # Verifica se pytest está instalado
+          python --version
+          which python
+          pip show pytest  # Verifica se pytest está instalado
           python -m pytest --version  # Confirma a versão do pytest instalado
 
-      - name: Run tests
+      - name: Run tests with python -m pytest
         run: |
           python -m pytest Backend/tests/
       
