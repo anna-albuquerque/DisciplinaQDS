@@ -1,0 +1,1 @@
+./Backend/nanny_pets_app/migrations/**
