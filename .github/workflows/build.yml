@@ -10,6 +10,7 @@ jobs:
   
     steps:
       - uses: actions/checkout@v4.2.1
+
       - name: Set up Python 3.12
         uses: actions/setup-python@v5.2.0
         with:
@@ -27,9 +28,6 @@ jobs:
         run: |
           pytest Backend/tests/
 
-          - name: Checkout repository
-          uses: actions/checkout@v2
-  
       - name: Set up Java
         uses: actions/setup-java@v2
         with:
@@ -43,4 +41,4 @@ jobs:
   
       - name: Run CPD to Check for Duplicate Code
         run: |
-          java -cp "./pmd-bin-6.49.0/lib/*" net.sourceforge.pmd.cpd.CPD --minimum-tokens 100 --files ./Backend/nanny_pets_app --language python --format text --excludes "**/migrations/**"
+          java -cp "./pmd-bin-6.49.0/lib/*" net.sourceforge.pmd.cpd.CPD --minimum-tokens 100 --files ./Backend/nanny_pets_app --language python --format text --excludes "**/migrations/**
