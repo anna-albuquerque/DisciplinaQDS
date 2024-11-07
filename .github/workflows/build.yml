@@ -27,7 +27,7 @@ jobs:
   
       - name: Run tests
         run: |
-          pytest Backend/tests/
+          python -m pytest Backend/tests/
       
       - name: Set up Java
         uses: actions/setup-java@v3
