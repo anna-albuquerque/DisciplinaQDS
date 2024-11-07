@@ -37,7 +37,7 @@ jobs:
       - name: Download PMD
         run: |
           wget https://github.com/pmd/pmd/releases/download/pmd_releases%2F6.49.0/pmd-bin-6.49.0.zip
-          unzip pmd-bin-6.49.0.zip
+          unzip -o pmd-bin-6.49.0.zip
   
       - name: Run CPD to Check for Duplicate Code
         run: |
