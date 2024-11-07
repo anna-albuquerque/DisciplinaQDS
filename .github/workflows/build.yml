@@ -41,4 +41,4 @@ jobs:
   
       - name: Run CPD to Check for Duplicate Code
         run: |
-          java -cp './pmd-bin-6.49.0/lib/*' net.sourceforge.pmd.cpd.CPD --minimum-tokens 100 --files ./Backend/nanny_pets_app --language python --format text --excludes "**/migrations/**"
+          java -cp './pmd-bin-6.49.0/lib/*' net.sourceforge.pmd.cpd.CPD --minimum-tokens 100 --files ./Backend/nanny_pets_app --language python --format text --excludes '**/migrations/**' 
