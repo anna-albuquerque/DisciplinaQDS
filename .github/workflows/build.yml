@@ -7,7 +7,7 @@ on:
 jobs:
   check-duplication:
     runs-on: ubuntu-latest
-  
+
     steps:
       - uses: actions/checkout@v4.2.1
 
@@ -27,6 +27,7 @@ jobs:
       - name: Run tests
         run: |
           pytest Backend/tests/
+          
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
@@ -46,3 +47,10 @@ jobs:
       - name: Run CPD to Check for Duplicate Code
         run: |
           java -cp "./pmd-bin-6.49.0/lib/*" net.sourceforge.pmd.cpd.CPD --minimum-tokens 100 --files ./Backend/nanny_pets_app --language python --format text --exclude ./Backend/nanny_pets_app/migrations
+          
+      - name: Push Changes (if necessary)
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git remote set-url origin https://$GITHUB_ACTOR:${{ secrets.MY_GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          git push origin main
