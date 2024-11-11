@@ -1,15 +1,13 @@
 from django.shortcuts import render, get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status,generics,filters
+from rest_framework import status, generics, filters
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
-from rest_framework.response import Response
 from .serializers import UserSerializer
-from rest_framework.views import APIView
-
 from .models import Cuidador, Caracteristicas, Tutor
-from .serializers import TutorSerializer,CuidadorSerializer, CaracteristicasSerializer
+from .serializers import TutorSerializer, CuidadorSerializer, CaracteristicasSerializer
+from django_filters.rest_framework import DjangoFilterBackend  # Importando filtro mais robusto
 
 class CustomAuthToken(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
@@ -27,6 +25,9 @@ class UserRegisterView(APIView):
     def post(self, request):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
+            # Verificação se o usuário já existe
+            if User.objects.filter(email=request.data.get('email')).exists():
+                return Response({'detail': 'User with this email already exists.'}, status=status.HTTP_400_BAD_REQUEST)
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -34,7 +35,8 @@ class UserRegisterView(APIView):
 class CuidadorFiltradoView(generics.ListAPIView):
     serializer_class = CuidadorSerializer
     queryset = Cuidador.objects.all()
-    filter_backends = [filters.BaseFilterBackend]
+    filter_backends = [DjangoFilterBackend]  # Filtro mais robusto
+    filterset_fields = ['caracteristicas']  # Filtro para o campo 'caracteristicas'
 
     def filter_queryset(self, queryset):
         caracteristicas = self.request.query_params.getlist('caracteristicas')
@@ -53,8 +55,9 @@ class CuidadorAPIView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request):
-        cuidadores = Cuidador.objects.all()
         caracteristicas = request.query_params.getlist('caracteristicas')
+        # Filtro diretamente na consulta do banco de dados
+        cuidadores = Cuidador.objects.all()
         if caracteristicas:
             cuidadores = cuidadores.filter(caracteristicas__id__in=caracteristicas).distinct()
         serializer = CuidadorSerializer(cuidadores, many=True)
