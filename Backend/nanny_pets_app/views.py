@@ -31,8 +31,7 @@ class UserRegisterView(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)      
 
 class CuidadorFiltradoView(generics.ListAPIView):
     serializer_class = CuidadorSerializer
@@ -44,7 +43,6 @@ class CuidadorFiltradoView(generics.ListAPIView):
         if caracteristicas:
             queryset = queryset.filter(caracteristicas__id__in=caracteristicas).distinct()
         return queryset
-
 
 class CuidadorAPIView(APIView):
     serializer_class = CuidadorSerializer     
@@ -64,28 +62,26 @@ class CuidadorAPIView(APIView):
         serializer = CuidadorSerializer(cuidadores, many=True)
         return Response(serializer.data)
 
-    
 class CaracteristicasAPIView(APIView):
     def get(self, request):
         caracteristicas = Caracteristicas.objects.all()
         serializer = CaracteristicasSerializer(caracteristicas, many=True)
         return Response(serializer.data)
 
-
 class CaracteristicasDoCuidadorView(APIView):
     def get(self, request, cuidador_id):
         cuidador = get_object_or_404(Cuidador, id=cuidador_id)
         caracteristicas = cuidador.caracteristicas.all()
-        serializer = CaracteristicaSerializer(caracteristicas, many=True)
+        serializer = CaracteristicasSerializer(caracteristicas, many=True)
         return Response(serializer.data)
 
 class TutorAPIView(APIView):
     serializer_class = TutorSerializer
 
     def get(self, request):
-     	tutores = Tutor.objects.all()
-     	serializer = TutorSerializer(tutores, many=True)
-     	return Response(serializer.data)
+        tutores = Tutor.objects.all()
+        serializer = TutorSerializer(tutores, many=True)
+        return Response(serializer.data)
     
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
@@ -95,4 +91,3 @@ class TutorAPIView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
