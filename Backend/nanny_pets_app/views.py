@@ -8,10 +8,8 @@ from rest_framework.response import Response
 from .serializers import UserSerializer
 from rest_framework.views import APIView
 
-
 from .models import Cuidador, Caracteristicas, Tutor
 from .serializers import TutorSerializer,CuidadorSerializer, CaracteristicasSerializer
-# Create your views here.
 
 class CustomAuthToken(ObtainAuthToken):
     def post(self, request, *args, **kwargs):
@@ -31,12 +29,12 @@ class UserRegisterView(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)      
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class CuidadorFiltradoView(generics.ListAPIView):
     serializer_class = CuidadorSerializer
     queryset = Cuidador.objects.all()
-    filter_backends = [filters.BaseFilterBackend]    
+    filter_backends = [filters.BaseFilterBackend]
 
     def filter_queryset(self, queryset):
         caracteristicas = self.request.query_params.getlist('caracteristicas')
@@ -45,7 +43,7 @@ class CuidadorFiltradoView(generics.ListAPIView):
         return queryset
 
 class CuidadorAPIView(APIView):
-    serializer_class = CuidadorSerializer     
+    serializer_class = CuidadorSerializer
 
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
