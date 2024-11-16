@@ -3,11 +3,11 @@ Este módulo contém as views relacionadas ao gerenciamento de cuidadores, tutor
 """
 
 from django.shortcuts import get_object_or_404
+from rest_framework.authtoken.models import Token
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, generics
 from rest_framework.authtoken.views import ObtainAuthToken
-from rest_framework.authtoken.models import Token
 from django_filters.rest_framework import DjangoFilterBackend
 from django.contrib.auth.models import User  # Importando modelo User
 from .serializers import (
