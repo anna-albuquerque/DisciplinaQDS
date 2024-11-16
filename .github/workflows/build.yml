@@ -1,56 +1,32 @@
-name: Code Quality
+name: Python CI
 
 on:
   push:
   pull_request:
 
 jobs:
-  check-duplication:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4.2.1
+    - name: Checkout repository
+      uses: actions/checkout@v4.2.1
 
-      - name: Set up Python 3.12
-        uses: actions/setup-python@v5.2.0
-        with:
-          python-version: 3.12
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
 
-      - name: Install dependencies
-        run: |
-          pip install --upgrade pip
-          pip install -r requirements.txt
-          
-      - name: Install pytest
-        run: pip install pytest
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install --no-deps -r requirements.txt
 
-      - name: Run tests
-        run: |
-          pytest Backend/tests/
-          
-      - name: Set up Java
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '11'
-  
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'  # Ou a versão mais recente do Node.js
-        
-      - name: Download PMD
-        run: |
-          wget https://github.com/pmd/pmd/releases/download/pmd_releases%2F6.49.0/pmd-bin-6.49.0.zip
-          unzip -o pmd-bin-6.49.0.zip
-  
-      - name: Run CPD to Check for Duplicate Code
-        run: |
-          java -cp "./pmd-bin-6.49.0/lib/*" net.sourceforge.pmd.cpd.CPD --minimum-tokens 100 --files ./Backend/nanny_pets_app --language python --format text --exclude ./Backend/nanny_pets_app/migrations
-          
-      - name: Push Changes (if necessary)
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
-          git remote set-url origin https://$GITHUB_ACTOR:${{ secrets.MY_GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
-          git push origin main
+    - name: Run pylint
+      run: |
+        pip install pylint
+        PYTHONPATH=$PYTHONPATH:. pylint .
+
+    - name: Run tests
+      run: |
+        pytest
