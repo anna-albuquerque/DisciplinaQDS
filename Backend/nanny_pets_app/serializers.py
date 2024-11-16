@@ -69,4 +69,3 @@ class TutorSerializer(serializers.ModelSerializer):
             'cpf',
             'email'
         )
-
