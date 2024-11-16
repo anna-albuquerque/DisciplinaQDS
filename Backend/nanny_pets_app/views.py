@@ -1,15 +1,17 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status, generics, filters
+from rest_framework import status, generics
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from .serializers import UserSerializer
 from .models import Cuidador, Caracteristicas, Tutor
 from .serializers import TutorSerializer, CuidadorSerializer, CaracteristicasSerializer
 from django_filters.rest_framework import DjangoFilterBackend  # Importando filtro mais robusto
+from django.contrib.auth.models import User
 
 class CustomAuthToken(ObtainAuthToken):
+# View para autenticação personalizada de usuários utilizando tokens. #
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data, context={'request': request})
         serializer.is_valid(raise_exception=True)
