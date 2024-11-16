@@ -37,7 +37,7 @@ class UserRegisterView(APIView):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
             if User.objects.filter(email=request.data.get('email')).exists():
-                return Response({'detail': 'User with this email already exists.'}, 
+                return Response({'detail': 'User with this email already exists.'},
                                 status=status.HTTP_400_BAD_REQUEST)
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)

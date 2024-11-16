@@ -115,6 +115,9 @@ unsafe-load-any-extension=no
 # In verbose mode, extra non-checker-related info will be displayed.
 #verbose=
 
+[MASTER]
+load-plugins=pylint_django
+
 
 [BASIC]
 
@@ -408,9 +411,6 @@ logging-format-style=old
 # function parameter format.
 logging-modules=logging
 
-[MASTER]
-ignore=migrations
-ignore-patterns=migrations
 
 [MESSAGES CONTROL]
 
