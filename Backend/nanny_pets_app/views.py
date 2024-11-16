@@ -27,7 +27,8 @@ class UserRegisterView(APIView):
         if serializer.is_valid():
             # Verificação se o usuário já existe
             if User.objects.filter(email=request.data.get('email')).exists():
-                return Response({'detail': 'User with this email already exists.'}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({'detail': 'User with this email already exists.'}, 
+                                tatus=status.HTTP_400_BAD_REQUEST)
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -83,12 +84,12 @@ class TutorAPIView(APIView):
         tutores = Tutor.objects.all()
         serializer = TutorSerializer(tutores, many=True)
         return Response(serializer.data)
-    
+
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
 
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        
+
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
