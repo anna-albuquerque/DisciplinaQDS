@@ -117,7 +117,7 @@ unsafe-load-any-extension=no
 
 [MASTER]
 load-plugins=pylint_django
-
+django-settings-module=Backend.settings  # Ajuste para o seu módulo de settings
 
 [BASIC]
 
