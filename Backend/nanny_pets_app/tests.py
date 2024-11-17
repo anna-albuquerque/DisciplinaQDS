@@ -1,5 +1,6 @@
 from django.test import TestCase
 
+
 class Tutor:
     def __init__(self, nome, sobrenome, data_nascimento, cpf, email, senha, telefone, foto_perfil):
         self.nome = nome

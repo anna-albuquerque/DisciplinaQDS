@@ -1,10 +1,8 @@
 from django.urls import path
 
-
-from .views import CaracteristicasAPIView,CaracteristicasDoCuidadorView, CuidadorAPIView, TutorAPIView,CuidadorFiltradoView,CustomAuthToken,UserRegisterView
-
-
-
+from .views import (CaracteristicasAPIView, CaracteristicasDoCuidadorView,
+                    CuidadorAPIView, CuidadorFiltradoView, CustomAuthToken,
+                    TutorAPIView, UserRegisterView)
 
 urlpatterns = [
     path('cuidadores/', CuidadorAPIView.as_view(), name='cuidadores'),
