@@ -1,8 +1,10 @@
 from django.contrib import admin
 
+from .models import (AvaliacaoCuidador, AvaliacaoTutor, Caracteristicas,
+                     Cuidador, ImagensAmbiente, Pessoa, Tutor)
+
 # Register your models here.
 
-from .models import Pessoa, Cuidador, Tutor, AvaliacaoTutor,Caracteristicas,AvaliacaoCuidador,ImagensAmbiente
 
 admin.site.register(Cuidador)
 admin.site.register(Tutor)
