@@ -27,7 +27,9 @@
     "json-server": "^0.17.4",
     "rxjs": "latest",
     "tslib": "^2.3.0",
-    "zone.js": "~0.14.2"
+    "zone.js": "~0.14.2",
+    "webpack": ">=5.94.0"
+
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "latest",
@@ -42,6 +44,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
-    "typescript": "~5.2.2"
+    "typescript": "~5.2.2",
+    "webpack": ">=5.94.0"
   }
 }
