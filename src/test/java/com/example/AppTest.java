@@ -5,8 +5,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class AppTest {
-    @Test
-    void testMain() {
-        assertTrue(true); // Teste básico para a classe principal
-    }
+
+	@Test
+	void testMain() {
+		assertTrue(true); // Teste básico para a classe principal
+	}
+
 }
