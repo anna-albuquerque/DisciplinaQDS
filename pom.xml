@@ -118,6 +118,7 @@
     <build>
         <pluginManagement>
             <plugins>
+
                 <plugin>
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
@@ -242,26 +243,18 @@
                         <includeTestSourceDirectory>true</includeTestSourceDirectory>
                     </configuration>
                 </plugin>  
+
                 <plugin>
                     <groupId>io.spring.javaformat</groupId>
                     <artifactId>spring-javaformat-maven-plugin</artifactId>
                     <version>${spring-javaformat.version}</version>
                 </plugin>      
 
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-pmd-plugin</artifactId>
-                    <version>${maven-pmd-plugin.version}</version>
-                    <configuration>
-                        <targetJdk>${java.source}</targetJdk>
-                        <includeTests>true</includeTests>
-                        <rulesets>
-                            <ruleset>${pmd.ruleset}</ruleset>
-                        </rulesets>
-                        <analysisCache>true</analysisCache>
-                        <linkXRef>false</linkXRef>
-                    </configuration>
-                </plugin>     
+		<plugin>
+			<groupId>io.spring.javaformat</groupId>
+			<artifactId>spring-javaformat-maven-plugin</artifactId>
+			<version>0.0.43</version>
+		</plugin>
 
                 <plugin>
                     <groupId>org.basepom.maven</groupId>
@@ -320,13 +313,7 @@
                     <argLine>@{argLine} -Dfile.encoding=UTF-8</argLine>
                 </configuration>
             </plugin>                
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <argLine>@{argLine} -Dfile.encoding=UTF-8</argLine>
-                </configuration>
-            </plugin>
+
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
