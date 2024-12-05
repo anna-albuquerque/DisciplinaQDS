@@ -1,0 +1,5 @@
+@startuml
+class Example {
+    + exampleMethod()
+}
+@endumlgit
