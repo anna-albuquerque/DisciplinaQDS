@@ -1,4 +1,5 @@
-package com.example.service;
+package com.anna.services;
+
 import java.math.BigDecimal;
 
 public class OrderItem {
@@ -6,6 +7,17 @@ public class OrderItem {
     private Product product;
     private int quantity;
     private double subTotal;
+
+    private BigDecimal price;
+
+public BigDecimal getPrice() {
+    return price;
+}
+
+public void setPrice(BigDecimal price) {
+    this.price = price;
+}
+
 
     public OrderItem(int itemId, Product product, int quantity) {
         this.itemId = itemId;
@@ -15,7 +27,7 @@ public class OrderItem {
     }
 
     public double calculateSubTotal() {
-        return product.getPrice() * quantity;
+        return product.getPrice().multiply(new BigDecimal(quantity));
     }
 
     public BigDecimal getSubTotal() {

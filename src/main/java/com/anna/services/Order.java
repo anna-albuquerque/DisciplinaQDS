@@ -1,4 +1,4 @@
-package com.example.service;
+package com.anna.services;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -29,7 +29,9 @@ public class Order {
     }
 
     public void calculateTotal() {
-        totalAmount = items.stream().mapToDouble(OrderItem::getSubTotal).sum();
+        totalAmount = items.stream()
+            .map(OrderItem::getSubTotal)
+            .reduce(BigDecimal.ZERO, BigDecimal::add);
         System.out.println("Order total updated: $" + totalAmount);
     }
 

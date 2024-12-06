@@ -1,4 +1,4 @@
-package com.example.service;
+package com.anna.services;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +15,11 @@ public class Customer {
         this.email = email;
         this.orders = new ArrayList<>();
     }
+
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
     public void placeOrder(Order order) {
         orders.add(order);

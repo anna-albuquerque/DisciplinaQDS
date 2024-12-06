@@ -1,4 +1,4 @@
-package com.example.service;
+package com.anna.services;
 import java.math.BigDecimal;
 
 public class Product {

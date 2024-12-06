@@ -1,5 +1,8 @@
-package com.example.service;
-
+package com.anna.service;
+import com.anna.controller.CrudController;
+import com.anna.controller.PaymentController;
+import com.anna.controller.ProductController;
+import java.util.Date;
 import java.util.Date;
 
 public class Main {
@@ -26,5 +29,63 @@ public class Main {
         } else {
             System.out.println("Payment failed!");
         }
+
+        // Inicializando controladores
+        CrudController crudController = new CrudController();
+        ProductController productController = new ProductController();
+        PaymentController paymentController = new PaymentController();
+
+        // --- Gerenciamento de Produtos ---
+        productController.addProduct(1, "Laptop", 1500.00, 10);
+        productController.addProduct(2, "Phone", 800.00, 5);
+        productController.listProducts();
+
+        // --- Gerenciamento de Clientes ---
+        crudController.createCustomer(1, "Alice", "alice@example.com");
+        crudController.createCustomer(2, "Bob", "bob@example.com");
+        crudController.readCustomers();
+
+        // --- Gerenciamento de Pedidos ---
+        Customer customer = crudController.getCustomerById(1);
+        if (customer != null) {
+            crudController.createOrder(1, new Date(), customer);
+
+            // Adicionando produtos ao pedido
+            Order order = crudController.getOrderById(1);
+            if (order != null) {
+                Product laptop = productController.getProductById(1);
+                Product phone = productController.getProductById(2);
+
+                if (laptop != null) {
+                    crudController.updateOrder(order.getOrderId(), laptop, 2);
+                }
+
+                if (phone != null) {
+                    crudController.updateOrder(order.getOrderId(), phone, 1);
+                }
+
+                // Atualizando total do pedido já ocorre no método addProduct
+
+                // --- Processando Pagamento ---
+                paymentController.processPayment(1, order, new Date());
+                paymentController.listPayments();
+            }
+        }
+
+        // --- Atualizando e Deletando Exemplos ---
+        crudController.updateCustomer(1, "Alice Smith", "alice.smith@example.com");
+        crudController.readCustomers();
+
+        productController.updateProduct(2, "Smartphone", 850.00, 4);
+        productController.listProducts();
+
+        crudController.deleteOrder(1);
+        crudController.readOrders();
+
+        crudController.deleteCustomer(2);
+        crudController.readCustomers();
+
+        productController.deleteProduct(1);
+        productController.listProducts();
     }
 }
