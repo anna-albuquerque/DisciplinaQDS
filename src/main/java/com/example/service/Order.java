@@ -31,5 +31,10 @@ public class Order {
         System.out.println("Order total updated: $" + totalAmount);
     }
 
-    // Getters and Setters
+    public BigDecimal getTotalAmount() {
+        return this.items.stream()
+            .map(OrderItem::getSubTotal)
+            .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+    
 }

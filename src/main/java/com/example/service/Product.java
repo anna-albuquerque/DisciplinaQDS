@@ -27,4 +27,9 @@ public class Product {
     public String getName() {
         return this.name;
     }
+
+    public BigDecimal getPrice() {
+        return this.price;
+    }
+    
 }
