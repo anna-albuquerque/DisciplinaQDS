@@ -17,5 +17,7 @@ public class OrderItem {
         return product.getPrice() * quantity;
     }
 
-    // Getters and Setters
+    public BigDecimal getSubTotal() {
+        return this.price.multiply(new BigDecimal(this.quantity));
+    }
 }
