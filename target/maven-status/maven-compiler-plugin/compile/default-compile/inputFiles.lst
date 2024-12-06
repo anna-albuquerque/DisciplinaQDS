@@ -1,2 +1,8 @@
 /workspaces/DisciplinaQDS/src/main/java/com/example/App.java
 /workspaces/DisciplinaQDS/src/main/java/com/example/service/CalculatorService.java
+/workspaces/DisciplinaQDS/src/main/java/com/example/service/Customer.java
+/workspaces/DisciplinaQDS/src/main/java/com/example/service/Main.java
+/workspaces/DisciplinaQDS/src/main/java/com/example/service/Order.java
+/workspaces/DisciplinaQDS/src/main/java/com/example/service/OrderItem.java
+/workspaces/DisciplinaQDS/src/main/java/com/example/service/Payment.java
+/workspaces/DisciplinaQDS/src/main/java/com/example/service/Product.java

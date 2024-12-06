@@ -1,4 +1,5 @@
 package com.example.service;
+import java.math.BigDecimal;
 
 public class Product {
     private int productId;
