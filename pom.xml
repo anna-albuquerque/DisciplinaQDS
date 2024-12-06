@@ -358,7 +358,7 @@
                                 <arguments>
                                     <argument>-jar</argument>
                                     <argument>target/plantuml-1.2024.8.jar</argument>
-                                    <argument>src/main/resources/diagrams</argument>
+                                    <argument>src/main/diagrams</argument>
                                 </arguments>
                             </configuration>
                         </execution>
