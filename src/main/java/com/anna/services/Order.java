@@ -29,9 +29,7 @@ public class Order {
     }
 
     public void calculateTotal() {
-        totalAmount = items.stream()
-            .map(OrderItem::getSubTotal)
-            .reduce(BigDecimal.ZERO, BigDecimal::add);
+        double amount = totalAmount.doubleValue();
         System.out.println("Order total updated: $" + totalAmount);
     }
 

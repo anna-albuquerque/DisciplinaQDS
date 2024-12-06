@@ -4,8 +4,28 @@ import com.anna.services.Product;
 import java.util.ArrayList;
 import java.util.List;
 
+private int productId;
+private int stockQuantity;
+
+public int getProductId() {
+    return productId;
+}
+
+public void setProductId(int productId) { 
+    this.productId = productId; 
+}
+
+public int getStockQuantity() { 
+    return stockQuantity; 
+}
+
+public void setStockQuantity(int stockQuantity) {
+    this.stockQuantity = stockQuantity; 
+}
+
 public class ProductController {
     private List<Product> products;
+
 
     public ProductController() {
         this.products = new ArrayList<>();
