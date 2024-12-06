@@ -24,5 +24,7 @@ public class Product {
         }
     }
 
-    // Getters and Setters
+    public String getName() {
+        return this.name;
+    }
 }
