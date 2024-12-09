@@ -10,12 +10,10 @@ public class Customer {
     private String email;
     private List<Order> orders = new ArrayList<>();
 
-    public Customer() {
-    }
-
-    public Customer(String name, String email) { // Ajuste de construtor
-        this.name = name;
-        this.email = email;
+    public Customer(String nome, String endereco, String telefone) {
+        this.nome = nome;
+        this.endereco = endereco;
+        this.telefone = telefone;
     }
     
     public Long getId() {

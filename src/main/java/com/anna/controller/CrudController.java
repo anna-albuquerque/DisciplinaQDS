@@ -24,9 +24,7 @@ public class CrudController {
             return;
         }
         // Ajuste: Criando uma nova instância de Customer com os parâmetros necessários
-        Customer customer = new Customer(id, name, email); // Ajuste conforme o seu construtor correto
-        customers.add(customer);
-        System.out.println("Cliente criado: " + name);
+        Customer customer = new Customer("Nome", "Endereço", "Telefone");
     }
 
     // Ler todos os clientes
