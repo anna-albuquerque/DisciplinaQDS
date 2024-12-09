@@ -18,6 +18,10 @@ public class CrudController {
 
     // Criar um novo cliente
     public void createCustomer(int id, String name, String email) {
+        if (name == null || email == null) {
+            System.out.println("Nome e e-mail são obrigatórios para criar um cliente.");
+            return;
+        }
         Customer customer = new Customer(id, name, email);
         customers.add(customer);
         System.out.println("Cliente criado: " + name);
@@ -54,9 +58,13 @@ public class CrudController {
 
     // Criar um novo pedido
     public void createOrder(int orderId, java.util.Date date, Customer customer) {
+        if (date == null || customer == null) {
+            System.out.println("Data e cliente são obrigatórios para criar um pedido.");
+            return;
+        }
         Order order = new Order(orderId, date);
         orders.add(order);
-        customer.placeOrder(order);
+        customer.placeOrder(order); // Certifique-se de que o método 'placeOrder' adiciona o pedido à lista do cliente
         System.out.println("Pedido criado com ID: " + orderId + " para o cliente: " + customer.getName());
     }
 
@@ -70,6 +78,10 @@ public class CrudController {
 
     // Atualizar um pedido existente (exemplo: adicionar produtos)
     public void updateOrder(int orderId, com.anna.services.Product product, int quantity) {
+        if (product == null || quantity <= 0) {
+            System.out.println("Produto inválido ou quantidade não positiva.");
+            return;
+        }
         for (Order order : orders) {
             if (order.getOrderId() == orderId) {
                 order.addProduct(product, quantity);

@@ -1,6 +1,7 @@
 package com.anna.controller;
 import com.anna.services.Product;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,22 +10,6 @@ public class ProductController {
 
     public ProductController() {
         this.products = new ArrayList<>();
-    }
-
-    public int getProductId() {
-        return productId;
-    }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
-
-    public int getStockQuantity() {
-        return stockQuantity;
-    }
-
-    public void setStockQuantity(int stockQuantity) {
-        this.stockQuantity = stockQuantity;
     }
 
     // Adicionar um novo produto
