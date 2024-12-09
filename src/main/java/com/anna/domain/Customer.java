@@ -3,56 +3,42 @@ package com.anna.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
-import java.util.regex.Pattern;
 
 public class Customer {
-    private final String id; // Imutável, do ponto de vista de dados
+    private Long id;
     private String name;
     private String email;
-    private final List<Order> orders; // Imutável diretamente pelo cliente
+    private List<Order> orders = new ArrayList<>();
 
-    // Construtor
-    public Customer(String id, String name, String email) {
-        if (id == null || id.trim().isEmpty()) {
-            throw new IllegalArgumentException("ID cannot be null or empty.");
-        }
-        if (name == null || name.trim().isEmpty()) {
-            throw new IllegalArgumentException("Name cannot be null or empty.");
-        }
-        if (!isValidEmail(email)) {
-            throw new IllegalArgumentException("Invalid email format.");
-        }
-
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.orders = new ArrayList<>();
+    public Customer() {
     }
 
-    // Getters
-    public String getId() {
+    public Customer(String name, String email) { // Ajuste de construtor
+        this.name = name;
+        this.email = email;
+    }
+    
+    public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public List<Order> getOrders() {
-        return Collections.unmodifiableList(orders); // Retorna lista imutável
-    }
-
-    // Setters
     public void setName(String name) {
         if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException("Name cannot be null or empty.");
         }
         this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public void setEmail(String email) {
@@ -62,23 +48,23 @@ public class Customer {
         this.email = email;
     }
 
-    // Método de Negócio
+    public List<Order> getOrders() {
+        return Collections.unmodifiableList(orders);
+    }
+
     public void placeOrder(Order order) {
         if (order == null) {
             throw new IllegalArgumentException("Order cannot be null.");
         }
         orders.add(order);
-        System.out.println("Order placed by " + name + ": " + order);
+        System.out.println("Order placed: " + order);
     }
 
-    // Validação de Email
-    private static boolean isValidEmail(String email) {
+    private boolean isValidEmail(String email) {
         String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
-        Pattern pattern = Pattern.compile(emailRegex);
-        return pattern.matcher(email).matches();
+        return email.matches(emailRegex);
     }
 
-    // Override de Métodos
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -89,7 +75,7 @@ public class Customer {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return id.hashCode();
     }
 
     @Override

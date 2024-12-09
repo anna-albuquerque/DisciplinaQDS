@@ -1,19 +1,21 @@
 package com.anna.services;
 
+import com.anna.domain.Order;
 import com.anna.services.OrderItem;
 import com.anna.services.Product;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Order {
+public class OrderService {
     private int orderId;
     private Date date;
     private List<OrderItem> items;
     private BigDecimal totalAmount;
 
-    public Order(int orderId, Date date) {
+    public OrderService(int orderId, Date date) {
         this.orderId = orderId;
         this.date = date;
         this.items = new ArrayList<>();

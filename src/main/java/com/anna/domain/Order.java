@@ -1,8 +1,8 @@
 package com.anna.domain;
-
+import com.anna.services.Product; 
 import com.anna.services.OrderItem;
-
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
@@ -13,6 +13,8 @@ public class Order {
 
     // Construtores
     public Order() {
+        this.items = new ArrayList<>();
+        this.totalAmount = BigDecimal.ZERO;
     }
 
     public Order(int orderId, String date, BigDecimal totalAmount, List<OrderItem> items) {
@@ -54,6 +56,25 @@ public class Order {
 
     public void setItems(List<OrderItem> items) {
         this.items = items;
+    }
+
+    // Método para adicionar um produto
+    public void addProduct(Product product, int quantity) {
+        if (product.updateStock(quantity)) {
+            OrderItem item = new OrderItem(items.size() + 1, product, quantity);
+            items.add(item);
+            calculateTotal(); // Atualiza o total após adicionar o produto
+        } else {
+            System.out.println("Cannot add product " + product.getName() + " - insufficient stock.");
+        }
+    }
+
+    // Método para calcular o total do pedido
+    public void calculateTotal() {
+        this.totalAmount = items.stream()
+            .map(OrderItem::getSubTotal)
+            .reduce(BigDecimal.ZERO, BigDecimal::add);
+        System.out.println("Order total updated: $" + totalAmount);
     }
 
     // Método toString para facilitar a impressão

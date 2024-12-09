@@ -1,6 +1,8 @@
 package com.anna.controller;
+
 import com.anna.services.Product;
-import com.anna.services.Customer;
+import com.anna.services.CustomerService;
+import com.anna.domain.Customer;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -15,6 +17,10 @@ public class ProductController {
 
     // Adicionar um novo produto
     public void addProduct(int productId, String name, double price, int stockQuantity) {
+        if (price <= 0 || stockQuantity < 0) {
+            System.out.println("Preço deve ser positivo e quantidade de estoque não pode ser negativa.");
+            return;
+        }
         Product product = new Product(productId, name, BigDecimal.valueOf(price), stockQuantity); // Converta price para BigDecimal
         products.add(product);
         System.out.println("Produto adicionado: " + name);
@@ -30,6 +36,10 @@ public class ProductController {
 
     // Atualizar um produto existente
     public void updateProduct(int productId, String newName, double newPrice, int newStockQuantity) {
+        if (newPrice <= 0 || newStockQuantity < 0) {
+            System.out.println("Novo preço deve ser positivo e nova quantidade de estoque não pode ser negativa.");
+            return;
+        }
         for (Product product : products) {
             if (product.getProductId() == productId) {
                 product.setName(newName);
@@ -56,10 +66,3 @@ public class ProductController {
         return null;
     }
 }
-
-// # Exemplo adicionar, listar, atualizar e deletar produtos #
-// ProductController controller = new ProductController();
-// controller.addProduct(1, "Produto A", 100.0, 50);
-// controller.listProducts();
-// controller.updateProduct(1, "Produto A Atualizado", 120.0, 40);
-// controller.deleteProduct(1);

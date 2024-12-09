@@ -15,7 +15,7 @@ public class Payment {
 
     public boolean processPayment() {
         System.out.println("Processing payment of $" + amount + " on " + date);
-        return true; // Simulating successful payment
+        return true; // Simulando pagamento bem sucedido
     }
 
     // Getters
