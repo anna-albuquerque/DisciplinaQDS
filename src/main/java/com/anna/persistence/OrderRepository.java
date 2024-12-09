@@ -1,0 +1,10 @@
+package com.anna.persistence;
+
+import com.anna.domain.Order;
+import java.util.List;
+
+public interface OrderRepository {
+    List<Order> findAll();
+    Order findById(int orderId);
+    void save(Order order);
+}
