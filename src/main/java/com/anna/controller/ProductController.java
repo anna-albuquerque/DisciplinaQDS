@@ -55,3 +55,10 @@ public class ProductController {
         return null;
     }
 }
+
+// # Exemplo adicionar, listar, atualizar e deletar produtos #
+// ProductController controller = new ProductController();
+// controller.addProduct(1, "Produto A", 100.0, 50);
+// controller.listProducts();
+// controller.updateProduct(1, "Produto A Atualizado", 120.0, 40);
+// controller.deleteProduct(1);

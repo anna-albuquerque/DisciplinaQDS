@@ -18,5 +18,29 @@ public class Payment {
         return true; // Simulating successful payment
     }
 
-    // Getters and Setters
+    // Getters
+    public int getPaymentId() {
+        return paymentId;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    // Setters
+    public void setPaymentId(int paymentId) {
+        this.paymentId = paymentId;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 }

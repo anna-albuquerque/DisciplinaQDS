@@ -1,22 +1,23 @@
 package com.anna.services;
 
 import com.anna.services.OrderItem;
+import com.anna.services.Product;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.math.BigDecimal;
-
 
 public class Order {
     private int orderId;
     private Date date;
     private List<OrderItem> items;
-    private double totalAmount;
+    private BigDecimal totalAmount;
 
     public Order(int orderId, Date date) {
         this.orderId = orderId;
         this.date = date;
         this.items = new ArrayList<>();
+        this.totalAmount = BigDecimal.ZERO;
     }
 
     public void addProduct(Product product, int quantity) {
@@ -30,14 +31,25 @@ public class Order {
     }
 
     public void calculateTotal() {
-        double amount = totalAmount.doubleValue();
+        this.totalAmount = items.stream()
+            .map(OrderItem::getSubTotal)
+            .reduce(BigDecimal.ZERO, BigDecimal::add);
         System.out.println("Order total updated: $" + totalAmount);
     }
 
     public BigDecimal getTotalAmount() {
-        return this.items.stream()
-            .map(OrderItem::getSubTotal)
-            .reduce(BigDecimal.ZERO, BigDecimal::add);
+        return totalAmount;
     }
-    
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public List<OrderItem> getItems() {
+        return items;
+    }
 }

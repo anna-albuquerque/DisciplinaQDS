@@ -22,15 +22,15 @@ public class PaymentController {
             payments.add(payment);
             System.out.println("Pagamento processado com sucesso para o pedido ID: " + order.getOrderId());
         } else {
+         
             System.out.println("Falha no processamento do pagamento para o pedido ID: " + order.getOrderId());
         }
     }
 
-    // Listar todos os pagamentos
-    public void listPayments() {
-        System.out.println("Lista de Pagamentos:");
-        for (Payment payment : payments) {
-            System.out.println("Pagamento ID: " + payment.getPaymentId() + ", Valor: $" + payment.getAmount() + ", Data: " + payment.getDate());
-        }
+public void displayPaymentInfo() {
+    Payment payment = new Payment(123, 100.0, new Date());
+    System.out.println("Payment ID: " + payment.getPaymentId());
+    System.out.println("Amount: " + payment.getAmount());
+    System.out.println("Date: " + payment.getDate());
     }
 }

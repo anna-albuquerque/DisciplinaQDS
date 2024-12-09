@@ -1,4 +1,5 @@
 package com.anna.services;
+
 import java.math.BigDecimal;
 
 public class Product {
@@ -7,6 +8,7 @@ public class Product {
     private BigDecimal price;
     private int stockQuantity;
 
+    // Construtor
     public Product(int productId, String name, BigDecimal price, int stockQuantity) {
         this.productId = productId;
         this.name = name;
@@ -14,6 +16,7 @@ public class Product {
         this.stockQuantity = stockQuantity;
     }
 
+    // Atualizar o estoque
     public boolean updateStock(int quantity) {
         if (stockQuantity >= quantity) {
             stockQuantity -= quantity;
@@ -25,12 +28,37 @@ public class Product {
         }
     }
 
+    // Getters
+    public int getProductId() {
+        return productId;
+    }
+
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public BigDecimal getPrice() {
-        return this.price;
+        return price;
     }
-    
+
+    public int getStockQuantity() {
+        return stockQuantity;
+    }
+
+    // Setters
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public void setStockQuantity(int stockQuantity) {
+        this.stockQuantity = stockQuantity;
+    }
 }
