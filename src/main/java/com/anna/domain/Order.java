@@ -1,4 +1,5 @@
 package com.anna.domain;
+import com.anna.services.OrderItem;
 
 import java.math.BigDecimal;
 import java.util.List;

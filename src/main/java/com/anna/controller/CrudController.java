@@ -69,7 +69,7 @@ public class CrudController {
     }
 
     // Atualizar um pedido existente (exemplo: adicionar produtos)
-    public void updateOrder(int orderId, com.example.service.Product product, int quantity) {
+    public void updateOrder(int orderId, com.anna.services.Product product, int quantity) {
         for (Order order : orders) {
             if (order.getOrderId() == orderId) {
                 order.addProduct(product, quantity);

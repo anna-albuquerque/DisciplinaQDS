@@ -4,42 +4,32 @@ import com.anna.services.Product;
 import java.util.ArrayList;
 import java.util.List;
 
-private int productId;
-private int stockQuantity;
-
-public int getProductId() {
-    return productId;
-}
-
-public void setProductId(int productId) { 
-    this.productId = productId; 
-}
-
-public int getStockQuantity() { 
-    return stockQuantity; 
-}
-
-public void setStockQuantity(int stockQuantity) {
-    this.stockQuantity = stockQuantity; 
-}
-
 public class ProductController {
     private List<Product> products;
-
 
     public ProductController() {
         this.products = new ArrayList<>();
     }
 
-    public int getProductId() { return productId; }
-    public void setProductId(int productId) { this.productId = productId; }
-    public int getStockQuantity() { return stockQuantity; }
-    public void setStockQuantity(int stockQuantity) { this.stockQuantity = stockQuantity; }
-   
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
+    public int getStockQuantity() {
+        return stockQuantity;
+    }
+
+    public void setStockQuantity(int stockQuantity) {
+        this.stockQuantity = stockQuantity;
+    }
 
     // Adicionar um novo produto
     public void addProduct(int productId, String name, double price, int stockQuantity) {
-        Product product = new Product(productId, name, price, stockQuantity);
+        Product product = new Product(productId, name, BigDecimal.valueOf(price), stockQuantity); // Converta price para BigDecimal
         products.add(product);
         System.out.println("Produto adicionado: " + name);
     }
@@ -57,7 +47,7 @@ public class ProductController {
         for (Product product : products) {
             if (product.getProductId() == productId) {
                 product.setName(newName);
-                product.setPrice(newPrice);
+                product.setPrice(BigDecimal.valueOf(newPrice)); // Converta newPrice para BigDecimal
                 product.setStockQuantity(newStockQuantity);
                 System.out.println("Produto atualizado: " + newName);
                 return;
