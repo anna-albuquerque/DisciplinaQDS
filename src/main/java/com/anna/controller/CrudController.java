@@ -2,6 +2,7 @@ package com.anna.controller;
 import com.anna.services.Customer;
 import com.anna.services.Order;
 
+import java.util.Objects;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -101,10 +102,13 @@ public class CrudController {
     // Métodos auxiliares para obter clientes e pedidos
     public Customer getCustomerById(int id) {
         for (Customer customer : customers) {
-            if (customer.getId() == id) return customer;
+            if (String.valueOf(customer.getId()).equals(String.valueOf(id))) {
+                return customer;
+            }
         }
         return null;
     }
+    
 
     public Order getOrderById(int orderId) {
         for (Order order : orders) {

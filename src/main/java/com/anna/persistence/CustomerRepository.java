@@ -1,6 +1,6 @@
 package com.anna.persistence;
 
-import com.anna.domain.Customer;
+import com.anna.services.Customer;
 import java.util.List;
 
 public interface CustomerRepository {
