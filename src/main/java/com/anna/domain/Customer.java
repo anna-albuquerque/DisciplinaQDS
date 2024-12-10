@@ -3,6 +3,7 @@ package com.anna.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class Customer {
     private Long id;
@@ -12,15 +13,15 @@ public class Customer {
     private String phone;
     private List<Order> orders = new ArrayList<>();
 
-    // Construtor com três parâmetros
+    // Construtor padrão
+    public Customer() {
+    }
+
+    // Construtor com parâmetros
     public Customer(String name, String email, String address) {
         this.name = name;
         this.email = email;
         this.address = address;
-    }
-
-    // Construtor padrão (sem parâmetros)
-    public Customer() {
     }
 
     // Getters e setters
@@ -83,6 +84,7 @@ public class Customer {
     }
 
     private boolean isValidEmail(String email) {
+        if (email == null) return false;
         String emailRegex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
         return email.matches(emailRegex);
     }
@@ -92,18 +94,18 @@ public class Customer {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Customer customer = (Customer) o;
-        return id.equals(customer.id);
+        return Objects.equals(id, customer.id);
     }
 
     @Override
     public int hashCode() {
-        return id.hashCode();
+        return Objects.hash(id);
     }
 
     @Override
     public String toString() {
         return "Customer{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", address='" + address + '\'' +
