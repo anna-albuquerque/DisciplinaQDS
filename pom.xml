@@ -158,7 +158,7 @@
                     <version>${decycle-maven-plugin.version}</version>
                     <executions>
                         <execution>
-                            <id>checkMain</id>
+                            <id>check</id>
                             <phase>verify</phase>
                             <goals>
                                 <goal>checkMain</goal>
