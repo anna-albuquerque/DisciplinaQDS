@@ -366,15 +366,10 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-checkstyle-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>checkstyle-validation</id>
-                                <phase>validate</phase>
-                                <goals>
-                                    <goal>checkMain</goal>
-                                </goals>
-                            </execution>
-                        </executions>
+                            <version>3.6.0</version>
+                                <configuration>
+                                    <configLocation>src/checkconfig/checkstyle/checkstyle.xml</configLocation>
+                                </configuration>
                     </plugin>
                 </plugins>
             </build>
