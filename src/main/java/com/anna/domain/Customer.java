@@ -8,20 +8,22 @@ public class Customer {
     private Long id;
     private String name;
     private String email;
+    private String address;
+    private String phone;
     private List<Order> orders = new ArrayList<>();
 
-    // Construtor
-    public Customer(String name, String email, String additional) {
+    // Construtor com três parâmetros
+    public Customer(String name, String email, String address) {
         this.name = name;
         this.email = email;
+        this.address = address;
     }
 
-    public Customer(String nome, String endereco, String telefone) {
-        this.nome = nome;
-        this.endereco = endereco;
-        this.telefone = telefone;
+    // Construtor padrão (sem parâmetros)
+    public Customer() {
     }
-    
+
+    // Getters e setters
     public Long getId() {
         return id;
     }
@@ -50,6 +52,22 @@ public class Customer {
             throw new IllegalArgumentException("Invalid email format.");
         }
         this.email = email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public List<Order> getOrders() {
@@ -88,6 +106,7 @@ public class Customer {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
                 ", orders=" + orders.size() +
                 '}';
     }
