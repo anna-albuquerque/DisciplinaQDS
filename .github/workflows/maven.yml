@@ -13,7 +13,7 @@ jobs:
         java: [21]
 
     steps:
-      - uses: actions/checkout@v4.2
+      - uses: actions/checkout@v4.2.1
 
       - name: Set up JDK ${{ matrix.java }}
         uses: actions/setup-java@v4.5.0
@@ -21,6 +21,12 @@ jobs:
           java-version: ${{ matrix.java }}
           distribution: 'temurin'
 
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install jscpd globally
+        run: npm install -g jscpd 
+        
       - name: Build with Maven
         run: mvn clean install
 
@@ -53,9 +59,22 @@ jobs:
       - name: Cpd
         run: ./mvnw -B -Pcpd validate
 
-      - name: Plantuml
-        run: ./mvnw -B -Pplantuml generate-test-sources
+      - name: Download PlantUML 
+        run: wget http://sourceforge.net/projects/plantuml/files/plantuml.jar/download -O plantuml.jar #baixar PlantUML
 
+      - name: Generate UML Diagrams 
+        run: | 
+          java -jar plantuml.jar -tpng -o diagrams uml/todos.puml
+
+      - name: Upload UML Diagrams 
+        uses: actions/upload-artifact@v4.4.3 
+        with:
+          name: uml-diagrams 
+          path: uml/diagrams/ 
+          
+      #- name: PlantUML
+      #  run: ./mvnw -B -Pplantuml generate-test-sources
+        
       - name: Decycle
         run: ./mvnw -B -Pdecycle -DskipTests verify
 
