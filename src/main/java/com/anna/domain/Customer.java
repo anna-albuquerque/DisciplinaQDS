@@ -4,6 +4,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+
+// Construtor com três parâmetros
+public Customer(String firstName, String lastName, String email) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+}
+
 public class Customer {
     private Long id;
     private String name;
