@@ -371,7 +371,7 @@
                                 <id>checkstyle-validation</id>
                                 <phase>validate</phase>
                                 <goals>
-                                    <goal>check</goal>
+                                    <goal>checkMain</goal>
                                 </goals>
                             </execution>
                         </executions>
