@@ -31,7 +31,7 @@
         <spotbugs-annotations.version>4.8.6</spotbugs-annotations.version>
         <spotbugs.excludeFilterFile>${project.basedir}/src/checkconfig/spotbugs/spotbugs-exclude.xml</spotbugs.excludeFilterFile>
         <findsecbugs-plugin.version>1.13.0</findsecbugs-plugin.version>
-        <plantuml-maven-plugin.version>0.2.12</plantuml-maven-plugin.version>
+        <plantuml-maven-plugin.version>1.2.3</plantuml-maven-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -147,9 +147,9 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>com.github.davidmoten</groupId>
+                <groupId>org.codehaus.mojo</groupId>
                 <artifactId>plantuml-maven-plugin</artifactId>
-                <version>${plantuml-maven-plugin.version}</version>
+                <version>1.2.3</version>
                 <executions>
                     <execution>
                         <id>generate-diagrams</id>
@@ -157,23 +157,6 @@
                         <goals>
                             <goal>generate</goal>
                         </goals>
-                        <configuration>
-                        <sources>
-                            <directory>${basedir}/src/main/plantuml</directory>
-                            <includes>
-                                <include>**/*.puml</include>
-                            </includes>
-                            <excludes>
-                                <exclude>**/ignore-me.puml</exclude>
-                            </excludes>
-                        </sources>
-                        <outputDirectory>${project.build.directory}/generated-diagrams</outputDirectory>
-                        <formats>
-                            <format>png</format>
-                            <format>svg</format>
-                        </formats>
-                        <preserveDirectoryStructure>false</preserveDirectoryStructure>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
