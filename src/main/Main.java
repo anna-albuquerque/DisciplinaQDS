@@ -5,6 +5,7 @@ import com.anna.controller.ProductController;
 import java.util.Date;
 import java.util.Date;
 
+@SpringBootApplication
 public class Main {
     public static void main(String[] args) {
         // Criando produtos
