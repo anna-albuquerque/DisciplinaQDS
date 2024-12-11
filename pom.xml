@@ -377,17 +377,16 @@
                                                         <one-of>controller, persistence</one-of>
                                                     </allow>
                                                     <allow>
-                                                        <one-of>dto, domain</one-of>
+                                                        <one-of>domain</one-of>
                                                     </allow>
                                                     <allow>
-                                                        <one-of>restclient, controller</one-of>
-                                                        <any-of>dto</any-of>
+                                                        <one-of>controller</one-of>
                                                     </allow>
                                                     <allow>
-                                                        <one-of>restclient, service</one-of>
+                                                        <one-of>service</one-of>
                                                     </allow>
                                                     <allow>
-                                                        <one-of>restclient, domain</one-of>
+                                                        <one-of>domain</one-of>
                                                     </allow>
                                                 </constraints>
                                             </slicing>
@@ -407,9 +406,9 @@
                                                 <patterns>com.anna.account.*=base, com.anna.account.{*}.**</patterns>
                                                 <constraints>
                                                     <allow>service, persistence</allow>
-                                                    <allow>service, common</allow>
-                                                    <allow>persistence, common</allow>
-                                                    <allow>domain, common</allow>
+                                                    <allow>service, controller</allow>
+                                                    <allow>controller, persistence</allow>
+                                                    <allow>domain</allow>
                                                 </constraints>
                                             </slicing>
                                         </slicings>
