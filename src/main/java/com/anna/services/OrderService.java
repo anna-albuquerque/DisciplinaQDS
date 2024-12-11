@@ -58,10 +58,7 @@ public class OrderService {
     }
 
     public void setCustomer(Customer customer) {
-        // Converte o Customer para apenas o ID antes de associar
-        this.customer = new Customer();
-        this.customer.setId(customer.getId());
-        // Remove associação direta com OrderService e apenas armazena o ID
-        customer.getOrders().add(this); // Estabelecendo associação bidirecional
+        this.customer = customer;
+        // A conversão do ID deve ser feita em um momento diferente, na lógica de negócio apropriada
     }
 }
