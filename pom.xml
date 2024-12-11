@@ -7,9 +7,6 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.3.5</version>
-        <configuration>
-            <mainClass>com.anna</mainClass> <!-- Alterne para o nome da classe principal da sua aplicação -->
-        </configuration>
     </parent>
 
     <groupId>com.anna</groupId>
@@ -164,6 +161,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.anna.main</mainClass> <!-- Alterne para o nome da classe principal da sua aplicação -->
+                </configuration>
             </plugin>
 
             <plugin>
