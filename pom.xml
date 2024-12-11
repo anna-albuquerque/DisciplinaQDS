@@ -112,9 +112,12 @@
         </pluginManagement>
         <plugins>
             <plugin>
-                <groupId>com.googlecode.maven-duplicate-finder-plugin</groupId>
-                <artifactId>duplicate-finder-maven-plugin</artifactId>
-                <version>${duplicate-finder-maven-plugin.version}</version>
+
+            <plugin>
+                <groupId>org.basepom.maven</groupId>
+                <artifactId>plugin-maven-localizador-de-duplicatas</artifactId>
+                <versão>2.0.2-SNAPSHOT</versão>
+            </plugin>
                 <executions>
                     <execution>
                         <phase>verify</phase>
