@@ -4,39 +4,57 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import lombok.Data;
 
-@Data
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Table(name = "customers")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Customer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String email;
-    private String address;
-    private String phone;
-    private List<Order> orders = new ArrayList<>();
 
-    // Construtor padrão
-    public Customer() {
-    }
+    @NotBlank(message = "Name cannot be null or empty")
+    @Column(nullable = false)
+    private String name;
+
+    @Email(message = "Invalid email format")
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @Column
+    private String address;
+
+    @Column
+    private String phone;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Order> orders = new ArrayList<>();
 
     // Construtor com parâmetros
     public Customer(String name, String email, String address) {
-        this.name = name;
-        this.email = email;
+        setName(name);
+        setEmail(email);
         this.address = address;
-    }
-
-    // Getters e setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void setName(String name) {
@@ -46,31 +64,11 @@ public class Customer {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
     public void setEmail(String email) {
         if (!isValidEmail(email)) {
             throw new IllegalArgumentException("Invalid email format.");
         }
         this.email = email;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public List<Order> getOrders() {
@@ -82,7 +80,7 @@ public class Customer {
             throw new IllegalArgumentException("Order cannot be null.");
         }
         orders.add(order);
-        System.out.println("Order placed: " + order);
+        order.setCustomer(this);
     }
 
     private boolean isValidEmail(String email) {
