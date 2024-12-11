@@ -45,7 +45,7 @@ jobs:
         run: ./mvnw -B verify
 
       - name: Copy PMD ruleset
-        run: cp ${project.basedir}/src/main/resources/pmd-ruleset.xml ${project.basedir}/src/main/resources
+        run: cp file:src/main/resources/pmd-ruleset.xml file:src/main/resources
 
       - name: Checkstyle
         run: ./mvnw -B -Pcheckstyle validate
