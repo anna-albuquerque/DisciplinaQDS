@@ -10,11 +10,11 @@ public class CustomerService {
         if (domainCustomer == null) {
             return null;
         }
-        Customer customer = new Customer();
-        customer.setId(domainCustomer.getId()); // Chama o método setId para atribuir o valor
-        customer.setName(domainCustomer.getName());
-        customer.setEmail(domainCustomer.getEmail());
-        return customer;
+        return Customer.builder()
+                .id(domainCustomer.getId()) // Converte apenas o ID
+                .name(domainCustomer.getName())
+                .email(domainCustomer.getEmail())
+                .build();
     }
 
     // Método para converter Long para String

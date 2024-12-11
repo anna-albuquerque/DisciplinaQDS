@@ -1,5 +1,6 @@
 package com.anna.services;
 
+import com.anna.domain.Customer;
 import com.anna.domain.Order;
 import com.anna.services.OrderItem;
 import com.anna.services.Product;
@@ -53,5 +54,12 @@ public class OrderService {
 
     public List<OrderItem> getItems() {
         return items;
+    }
+
+    public void setCustomer(Customer customer) {
+        // Converte o Customer para apenas o ID antes de associar
+        this.customer = new Customer();
+        this.customer.setId(customer.getId());
+        customer.getOrders().add(this); // Estabelecendo associação bidirecional
     }
 }
