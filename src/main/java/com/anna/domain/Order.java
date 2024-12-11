@@ -15,6 +15,7 @@ public class Order {
     public Order() {
         this.items = new ArrayList<>();
         this.totalAmount = BigDecimal.ZERO;
+        
     }
 
     public Order(int orderId, String date, BigDecimal totalAmount, List<OrderItem> items) {
@@ -24,6 +25,13 @@ public class Order {
         this.items = items;
     }
 
+    @ManyToOne
+    private Customer customer; // Referência para o customer
+
+    // Outras propriedades e métodos
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+        
     // Getters
     public int getOrderId() {
         return orderId;

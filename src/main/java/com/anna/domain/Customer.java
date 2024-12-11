@@ -80,8 +80,9 @@ public class Customer {
             throw new IllegalArgumentException("Order cannot be null.");
         }
         orders.add(order);
-        order.setCustomer(this);
+        order.setCustomer(this); // Atribua o customer para o pedido
     }
+    
 
     private boolean isValidEmail(String email) {
         if (email == null) return false;
