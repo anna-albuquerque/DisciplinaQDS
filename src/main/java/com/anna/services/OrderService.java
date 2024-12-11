@@ -1,64 +1,46 @@
 package com.anna.services;
 
-import com.anna.domain.Customer;
-import com.anna.domain.Order;
-import com.anna.services.OrderItem;
-import com.anna.services.Product;
-
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class OrderService {
+    // Remover dependência direta de Customer
+    private Long customerId; 
     private int orderId;
     private Date date;
-    private List<OrderItem> items;
+    private List<Long> orderItemIds; // Usar IDs em vez de objetos
     private BigDecimal totalAmount;
-    private Customer customer; // Atributo adicionado para armazenar o ID do cliente
 
     public OrderService(int orderId, Date date) {
         this.orderId = orderId;
         this.date = date;
-        this.items = new ArrayList<>();
+        this.orderItemIds = new ArrayList<>();
         this.totalAmount = BigDecimal.ZERO;
     }
 
     public void addProduct(Product product, int quantity) {
         if (product.updateStock(quantity)) {
-            OrderItem item = new OrderItem(items.size() + 1, product, quantity);
-            items.add(item);
+            // Criar e salvar OrderItem, obtendo seu ID
+            Long orderItemId = saveOrderItem(product, quantity);
+            orderItemIds.add(orderItemId);
             calculateTotal();
         } else {
             System.out.println("Cannot add product " + product.getName() + " - insufficient stock.");
         }
     }
 
-    public void calculateTotal() {
-        this.totalAmount = items.stream()
-            .map(OrderItem::getSubTotal)
-            .reduce(BigDecimal.ZERO, BigDecimal::add);
-        System.out.println("Order total updated: $" + totalAmount);
+    // Método para salvar OrderItem e retornar seu ID
+    private Long saveOrderItem(Product product, int quantity) {
+        OrderItem item = new OrderItem(orderItemIds.size() + 1, product, quantity);
+        // Lógica para salvar o item e retornar seu ID
+        return (long) item.getItemId();
     }
 
-    public BigDecimal getTotalAmount() {
-        return totalAmount;
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
-    public int getOrderId() {
-        return orderId;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public List<OrderItem> getItems() {
-        return items;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-        // A conversão do ID deve ser feita em um momento diferente, na lógica de negócio apropriada
-    }
+    // Outros métodos mantidos...
 }

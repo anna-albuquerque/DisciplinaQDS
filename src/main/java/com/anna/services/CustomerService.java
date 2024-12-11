@@ -1,23 +1,17 @@
 package com.anna.services;
 
 import com.anna.domain.Customer;
-import com.anna.domain.DomainCustomer;
 
 public class CustomerService {
-
-    // Método para converter um DomainCustomer para um Customer da domain
-    public static Customer fromDomainCustomer(DomainCustomer domainCustomer) {
-        if (domainCustomer == null) {
-            return null;
-        }
+    // Remover referência a DomainCustomer
+    public Customer createCustomer(String name, String email) {
         return Customer.builder()
-                .id(domainCustomer.getId()) // Converte apenas o ID
-                .name(domainCustomer.getName())
-                .email(domainCustomer.getEmail())
+                .name(name)
+                .email(email)
                 .build();
     }
 
-    // Método para converter Long para String
+    // Converter ID para string mantido
     public String convertLongToString(Long id) {
         return id == null ? null : id.toString();
     }
