@@ -1,37 +1,49 @@
 package com.anna.domain;
-import com.anna.services.Product; 
+
+import com.anna.services.Product;
 import com.anna.services.OrderItem;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "orders")
 public class Order {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int orderId;
     private String date;
     private BigDecimal totalAmount;
     private List<OrderItem> items;
 
+    @ManyToOne
+    private Customer customer; // Referência para o customer
+
     // Construtores
     public Order() {
         this.items = new ArrayList<>();
         this.totalAmount = BigDecimal.ZERO;
-        
     }
 
-    public Order(int orderId, String date, BigDecimal totalAmount, List<OrderItem> items) {
-        this.orderId = orderId;
-        this.date = date;
-        this.totalAmount = totalAmount;
-        this.items = items;
+    public Order(Customer customer) {
+        this.customer = customer;
+        this.items = new ArrayList<>();
+        this.totalAmount = BigDecimal.ZERO;
     }
 
-    @ManyToOne
-    private Customer customer; // Referência para o customer
-
-    // Outras propriedades e métodos
+    // Setters
     public void setCustomer(Customer customer) {
         this.customer = customer;
-        
+        customer.getOrders().add(this); // Estabelecendo associação bidirecional
+    }
+
     // Getters
     public int getOrderId() {
         return orderId;
@@ -49,7 +61,6 @@ public class Order {
         return items;
     }
 
-    // Setters
     public void setOrderId(int orderId) {
         this.orderId = orderId;
     }
