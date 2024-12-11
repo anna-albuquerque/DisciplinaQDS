@@ -10,6 +10,5 @@ com/anna/service/Main.class
 com/anna/controller/PaymentController.class
 com/anna/domain/Customer.class
 com/anna/persistence/OrderRepository.class
-com/anna/services/OrderService.class
 com/anna/services/Product.class
 com/anna/services/CustomerService.class

@@ -15,6 +15,7 @@ public class OrderService {
     private Date date;
     private List<OrderItem> items;
     private BigDecimal totalAmount;
+    private Customer customer; // Atributo adicionado para armazenar o ID do cliente
 
     public OrderService(int orderId, Date date) {
         this.orderId = orderId;
@@ -60,6 +61,7 @@ public class OrderService {
         // Converte o Customer para apenas o ID antes de associar
         this.customer = new Customer();
         this.customer.setId(customer.getId());
+        // Remove associação direta com OrderService e apenas armazena o ID
         customer.getOrders().add(this); // Estabelecendo associação bidirecional
     }
 }
