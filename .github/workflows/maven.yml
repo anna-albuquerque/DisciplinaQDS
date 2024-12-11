@@ -44,14 +44,8 @@ jobs:
       - name: Tests
         run: ./mvnw -B verify
 
-      # - name: Copy PMD ruleset
-      #  run: cp file:src/main/resources/pmd-ruleset.xml file:src/main/resources
-
       - name: Checkstyle
         run: ./mvnw -B -Pcheckstyle validate
-
-      #- name: Pmd
-      #  run: ./mvnw -B -Ppmd validate
 
       - name: Cpd
         run: ./mvnw -B -Pcpd validate
