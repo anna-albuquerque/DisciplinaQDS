@@ -12,13 +12,13 @@
         <property name="max" value="2000"/>
     </module>
 
+    <!-- Verifica caracteres de tabulação -->
+    <module name="FileTabCharacter">
+        <property name="eachLine" value="true"/>
+    </module>
+
     <!-- TreeWalker: estrutura geral de verificações -->
     <module name="TreeWalker">
-        <!-- Verifica caracteres de tabulação -->
-        <module name="FileTabCharacter">
-            <property name="eachLine" value="true"/>
-        </module>
-
         <!-- Define regras de nomenclatura -->
         <module name="Regexp">
             <property name="format" value="^[a-zA-Z0-9_]*$"/>
