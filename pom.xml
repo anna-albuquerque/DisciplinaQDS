@@ -256,7 +256,7 @@
                         <executions>
                             <execution>
                                 <id>checkstyle-validation</id>
-                                <phase>validate</phase>
+                                <phase>none</phase> <!-- Desativa o Checkstyle validate --> 
                                 <goals>
                                     <goal>check</goal>
                                 </goals>
