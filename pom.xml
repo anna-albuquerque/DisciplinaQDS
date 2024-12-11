@@ -349,83 +349,85 @@
             </build>
         </profile>
 
-        <profile>
-            <id>decycle</id>
-            <build>
-                <pluginManagement>
-                    <plugins>                    
-                        <plugin>
-                            <groupId>de.obqo.decycle</groupId>
-                            <artifactId>decycle-maven-plugin</artifactId>
-                            <version>${decycle-maven-plugin.version}</version>
-                            <executions>
-                                <execution>
-                                    <id>checkMain</id>
-                                    <phase>verify</phase>
-                                    <goals>
-                                        <goal>checkMain</goal>
-                                    </goals>
-                                    <configuration>
-                                        <slicings>
-                                            <slicing>
-                                                <name>branches</name>
-                                                <patterns>com.anna.account.*=base, com.anna.account.{*}.**</patterns>
-                                                <constraints>
-                                                    <allow>controller, service, domain</allow>
-                                                    <allow>service, persistence, domain</allow>
-                                                    <allow>
-                                                        <one-of>controller, persistence</one-of>
-                                                    </allow>
-                                                    <allow>
-                                                        <one-of>domain</one-of>
-                                                    </allow>
-                                                    <allow>
-                                                        <one-of>controller</one-of>
-                                                    </allow>
-                                                    <allow>
-                                                        <one-of>service</one-of>
-                                                    </allow>
-                                                    <allow>
-                                                        <one-of>main</one-of>
-                                                    </allow>
-                                                </constraints>
-                                            </slicing>
-                                        </slicings>
-                                    </configuration>
-                                </execution>
-                                <execution>
-                                    <id>checkTest</id>
-                                    <phase>verify</phase>
-                                    <goals>
-                                        <goal>checkTest</goal>
-                                    </goals>
-                                    <configuration>
-                                        <slicings>
-                                            <slicing>
-                                                <name>branches</name>
-                                                <patterns>com.anna.account.*=base, com.anna.account.{*}.**</patterns>
-                                                <constraints>
-                                                    <allow>service, persistence</allow>
-                                                    <allow>service, controller</allow>
-                                                    <allow>controller, persistence</allow>
-                                                    <allow>domain</allow>
-                                                </constraints>
-                                            </slicing>
-                                        </slicings>
-                                    </configuration>
-                                </execution>
-                            </executions>
-                        </plugin>
-                    </plugins>
-                </pluginManagement>
-                <plugins>
-                    <plugin>
-                        <groupId>de.obqo.decycle</groupId>
-                        <artifactId>decycle-maven-plugin</artifactId>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
+<profile>
+    <id>decycle</id>
+    <build>
+        <pluginManagement>
+            <plugins>                    
+                <plugin>
+                    <groupId>de.obqo.decycle</groupId>
+                    <artifactId>decycle-maven-plugin</artifactId>
+                    <version>${decycle-maven-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>checkMain</id>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>checkMain</goal>
+                            </goals>
+                            <configuration>
+                                <slicings>
+                                    <slicing>
+                                        <name>branches</name>
+                                        <patterns>com.anna.services.*, com.anna.controller.*, com.anna.domain.*</patterns>
+                                        <constraints>
+                                            <allow>controller, service, domain</allow>
+                                            <allow>service, persistence, domain</allow>
+                                            <allow>
+                                                <one-of>controller, persistence</one-of>
+                                            </allow>
+                                            <allow>
+                                                <one-of>domain</one-of>
+                                            </allow>
+                                            <allow>
+                                                <one-of>controller</one-of>
+                                            </allow>
+                                            <allow>
+                                                <one-of>service</one-of>
+                                            </allow>
+                                            <allow>
+                                                <one-of>main</one-of>
+                                            </allow>
+                                        </constraints>
+                                    </slicing>
+                                </slicings>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>checkTest</id>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>checkTest</goal>
+                            </goals>
+                            <configuration>
+                                <slicings>
+                                    <slicing>
+                                        <name>branches</name>
+                                        <patterns>com.anna.services.*, com.anna.controller.*, com.anna.domain.*</patterns>
+                                        <constraints>
+                                            <allow>service, persistence</allow>
+                                            <allow>service, controller</allow>
+                                            <allow>controller, persistence</allow>
+                                            <allow>domain</allow>
+                                        </constraints>
+                                    </slicing>
+                                </slicings>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>de.obqo.decycle</groupId>
+                <artifactId>decycle-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</profile>
+
+
         <profile>
             <id>plantuml</id>
             <build>
