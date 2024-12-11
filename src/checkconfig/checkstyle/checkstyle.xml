@@ -4,18 +4,21 @@
     "https://checkstyle.org/dtds/configuration_1_3.dtd">
 
 <module name="Checker">
-    <!-- Configura o pacote base -->
+    <!-- Define a severidade padrão como erro -->
     <property name="severity" value="error"/>
 
-    <!-- Verifica o cabeçalho do arquivo -->
-        <module name="FileLength">
-            <property name="max" value="2000"/>
-        </module>
-        
+    <!-- Verifica o comprimento do arquivo -->
+    <module name="FileLength">
+        <property name="max" value="2000"/>
+    </module>
+
+    <!-- TreeWalker: estrutura geral de verificações -->
+    <module name="TreeWalker">
+        <!-- Verifica caracteres de tabulação -->
         <module name="FileTabCharacter">
             <property name="eachLine" value="true"/>
         </module>
-        
+
         <!-- Define regras de nomenclatura -->
         <module name="Regexp">
             <property name="format" value="^[a-zA-Z0-9_]*$"/>
