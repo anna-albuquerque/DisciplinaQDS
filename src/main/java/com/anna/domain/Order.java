@@ -32,13 +32,14 @@ public class Order {
         this.totalAmount = BigDecimal.ZERO;
     }
 
-    public Order(Customer customer) {
+    public Order(int orderId, String date, BigDecimal totalAmount, Customer customer, List<OrderItem> items) {
+        this.orderId = orderId;
+        this.date = date;
+        this.totalAmount = totalAmount;
         this.customer = customer;
-        this.items = new ArrayList<>();
-        this.totalAmount = BigDecimal.ZERO;
+        this.items = items != null ? items : new ArrayList<>(); // Garantir que items não seja nulo
     }
 
-    // Setters
     public void setCustomer(Customer customer) {
         this.customer = customer;
         customer.getOrders().add(this); // Estabelecendo associação bidirecional
@@ -59,6 +60,10 @@ public class Order {
 
     public List<OrderItem> getItems() {
         return items;
+    }
+
+    public Customer getCustomer() {
+        return customer;
     }
 
     public void setOrderId(int orderId) {
@@ -104,6 +109,7 @@ public class Order {
                 ", date='" + date + '\'' +
                 ", totalAmount=" + totalAmount +
                 ", items=" + items +
+                ", customer=" + (customer != null ? customer.getName() : "null") + // Exibir o nome do cliente para facilitar
                 '}';
     }
 
