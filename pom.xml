@@ -112,8 +112,6 @@
         </pluginManagement>
         <plugins>
             <plugin>
-
-            <plugin>
                 <groupId>org.basepom.maven</groupId>
                 <artifactId>plugin-maven-localizador-de-duplicatas</artifactId>
                 <versão>2.0.2-SNAPSHOT</versão>
