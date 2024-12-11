@@ -386,7 +386,7 @@
                                                         <one-of>service</one-of>
                                                     </allow>
                                                     <allow>
-                                                        <one-of>domain</one-of>
+                                                        <one-of>main</one-of>
                                                     </allow>
                                                 </constraints>
                                             </slicing>
