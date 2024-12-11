@@ -11,20 +11,20 @@ import java.util.Date;
 import java.util.List;
 
 public class CrudController {
-
     private List<Customer> customers = new ArrayList<>();
     private List<Order> orders = new ArrayList<>();
 
     // --- Operações para Customer ---
 
     // Criar um novo cliente
-    public void createCustomer(String id, String name, String email) {
+    public void createCustomer(String name, String email, String address, String phone) {
         if (name == null || email == null) {
             System.out.println("Nome e e-mail são obrigatórios para criar um cliente.");
             return;
         }
         // Ajuste: Criando uma nova instância de Customer com os parâmetros necessários
-        Customer customer = new Customer("Nome", "Endereço", "Telefone");
+        Customer customer = new Customer(name, address, phone);
+        customers.add(customer);
     }
 
     // Ler todos os clientes
@@ -56,36 +56,41 @@ public class CrudController {
 
     // --- Operações para Order ---
 
-// Criar um novo pedido
-public void createOrder(String customerName) {
-    int orderId = orders.size() + 1; // Ajuste: Criação de pedido sequencial
-    String date = new Date().toString(); // Obtendo a data atual como uma string
-
-    // Ajuste: Criando uma nova instância de Order com os parâmetros necessários
-    Order order = new Order(orderId, date, BigDecimal.ZERO, new ArrayList<OrderItem>());
-    orders.add(order); // Adicionando o pedido à lista de pedidos
-
-    // Adicionando produtos ao pedido
-    Product product = new Product(1, "Produto Exemplo", BigDecimal.valueOf(100.0), 10);
-    int quantity = 2;
-    order.addProduct(product, quantity); // Supondo que o método 'addProduct' aceite um produto e uma quantidade
-}
-
-// Atualizar um pedido existente (exemplo: adicionar produtos)
-public void updateOrder(int orderId, Product product, int quantity) {
-    if (product == null || quantity <= 0) {
-        System.out.println("Produto inválido ou quantidade não positiva.");
-        return;
-    }
-    for (Order order : orders) {
-        if (order.getOrderId() == orderId) {
-            order.addProduct(product, quantity);
-            System.out.println("Produto adicionado ao pedido ID: " + orderId);
+    // Criar um novo pedido
+    public void createOrder(Customer customer) {
+        if (customer == null) {
+            System.out.println("Cliente é obrigatório para criar um pedido.");
             return;
         }
+
+        int orderId = orders.size() + 1; // Ajuste: Criação de pedido sequencial
+        String date = new Date().toString(); // Obtendo a data atual como uma string
+
+        // Ajuste: Criando uma nova instância de Order com os parâmetros necessários
+        Order order = new Order(orderId, date, BigDecimal.ZERO, customer, new ArrayList<>());
+        orders.add(order); // Adicionando o pedido à lista de pedidos
+
+        // Adicionando produtos ao pedido
+        Product product = new Product(1, "Produto Exemplo", BigDecimal.valueOf(100.0), 10);
+        int quantity = 2;
+        order.addProduct(product, quantity); // Supondo que o método 'addProduct' aceite um produto e uma quantidade
     }
-    System.out.println("Pedido com ID " + orderId + " não encontrado.");
-}
+
+    // Atualizar um pedido existente (exemplo: adicionar produtos)
+    public void updateOrder(int orderId, Product product, int quantity) {
+        if (product == null || quantity <= 0) {
+            System.out.println("Produto inválido ou quantidade não positiva.");
+            return;
+        }
+        for (Order order : orders) {
+            if (order.getOrderId() == orderId) {
+                order.addProduct(product, quantity);
+                System.out.println("Produto adicionado ao pedido ID: " + orderId);
+                return;
+            }
+        }
+        System.out.println("Pedido com ID " + orderId + " não encontrado.");
+    }
 
     // Deletar um pedido
     public void deleteOrder(int orderId) {
