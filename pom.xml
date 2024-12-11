@@ -23,10 +23,10 @@
         <spring-javaformat.version>0.0.43</spring-javaformat.version>
 
         <checkstyle.version>10.20.1</checkstyle.version>
-        <checkstyle.configLocation>src/checkconfig/checkstyle/checkstyle.xml</checkstyle.configLocation>
+        <checkstyle.configLocation>${project.basedir}/src/checkconfig/checkstyle/checkstyle.xml</checkstyle.configLocation>
 
         <maven-pmd-plugin.version>3.26.0</maven-pmd-plugin.version>
-        <pmd.ruleset>src/main/resources/pmd-ruleset.xml</pmd.ruleset>
+        <pmd.ruleset>${project.basedir}/src/main/resources/pmd-ruleset.xml</pmd.ruleset>
 
         <duplicate-finder-maven-plugin.version>2.0.1</duplicate-finder-maven-plugin.version>
         <duplicate.ignoredResourcePattern>()</duplicate.ignoredResourcePattern>
