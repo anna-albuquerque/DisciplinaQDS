@@ -4,6 +4,7 @@
 /workspaces/DisciplinaQDS/src/main/java/com/anna/domain/Customer.java
 /workspaces/DisciplinaQDS/src/main/java/com/anna/domain/DomainCustomer.java
 /workspaces/DisciplinaQDS/src/main/java/com/anna/domain/Order.java
+/workspaces/DisciplinaQDS/src/main/java/com/anna/main/Main.java
 /workspaces/DisciplinaQDS/src/main/java/com/anna/persistence/CustomerRepository.java
 /workspaces/DisciplinaQDS/src/main/java/com/anna/persistence/OrderRepository.java
 /workspaces/DisciplinaQDS/src/main/java/com/anna/services/CustomerService.java
