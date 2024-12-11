@@ -23,7 +23,7 @@ public class CrudController {
             return;
         }
         // Ajuste: Criando uma nova instância de Customer com os parâmetros necessários
-        Customer customer = new Customer(name, address, phone);
+        Customer customer = new Customer(name, email, address);
         customers.add(customer);
     }
 

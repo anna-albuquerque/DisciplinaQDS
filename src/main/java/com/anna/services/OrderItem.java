@@ -25,4 +25,30 @@ public class OrderItem {
         // Atualiza o subtotal com base na nova quantidade
         this.subTotal = product.getPrice().multiply(BigDecimal.valueOf(newQuantity));
     }
+
+    // Getters
+    public int getItemId() {
+        return itemId;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    // Setters
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 }

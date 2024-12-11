@@ -1,9 +1,7 @@
 package com.anna.controller;
 
 import com.anna.services.OrderItem;
-import com.anna.services.CustomerService;
 import com.anna.domain.Order;
-import com.anna.domain.Customer;
 import com.anna.services.Payment;
 
 import java.util.ArrayList;
@@ -35,5 +33,9 @@ public class PaymentController {
     }
 
     public void displayPaymentInfo() {
+        // Exemplo de exibição de informações de pagamento
+        for (Payment payment : payments) {
+            System.out.println("Pagamento ID: " + payment.getPaymentId() + ", Valor: $" + payment.getAmount() + ", Data: " + payment.getDate());
+        }
     }
 }

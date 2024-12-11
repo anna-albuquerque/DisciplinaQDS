@@ -1,8 +1,6 @@
 package com.anna.controller;
 
 import com.anna.services.Product;
-import com.anna.services.CustomerService;
-import com.anna.domain.Customer;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

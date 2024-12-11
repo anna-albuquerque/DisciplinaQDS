@@ -83,6 +83,13 @@ public class Customer {
         order.setCustomer(this); // Atribua o customer para o pedido
     }
     
+    public void addOrder(Order order) {
+        if (order == null) {
+            throw new IllegalArgumentException("Order cannot be null.");
+        }
+        orders.add(order);
+        order.setCustomer(this); // Associar bidirecional de forma controlada
+    }
 
     private boolean isValidEmail(String email) {
         if (email == null) return false;
