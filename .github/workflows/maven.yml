@@ -47,11 +47,8 @@ jobs:
       - name: Checkstyle
         run: ./mvnw -B -Pcheckstyle validate
 
-      - name: Copy PMD ruleset
-        run: cp /path/to/local/pmd-ruleset.xml src/checkconfig/pmd/
-
-      - name: Run PMD
-        run: mvn org.apache.maven.plugins:maven-pmd-plugin:3.26.0:pmd
+      - name: Pmd
+        run: ./mvnw -B -Ppmd validate
 
       - name: Cpd
         run: ./mvnw -B -Pcpd validate
