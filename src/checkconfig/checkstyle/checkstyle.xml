@@ -7,33 +7,29 @@
     <!-- Define a severidade padrão como erro -->
     <property name="severity" value="error"/>
 
-    <!-- Verifica o comprimento do arquivo -->
+    <!-- Módulos independentes -->
     <module name="FileLength">
         <property name="max" value="2000"/>
     </module>
 
-    <!-- Verifica caracteres de tabulação -->
     <module name="FileTabCharacter">
         <property name="eachLine" value="true"/>
     </module>
 
-    <!-- TreeWalker: estrutura geral de verificações -->
+    <!-- Módulo TreeWalker -->
     <module name="TreeWalker">
-        <!-- Define regras de nomenclatura -->
+        <!-- Verificações que dependem da análise da árvore de sintaxe -->
         <module name="Regexp">
             <property name="format" value="^[a-zA-Z0-9_]*$"/>
         </module>
 
-        <!-- Comprimento máximo de linha -->
         <module name="LineLength">
             <property name="max" value="120"/>
             <property name="tabWidth" value="4"/>
         </module>
 
-        <!-- Verifica comentários de documentação -->
         <module name="JavadocStyle"/>
 
-        <!-- Regras de indentação -->
         <module name="Indentation">
             <property name="basicOffset" value="4"/>
             <property name="braceAdjustment" value="0"/>
@@ -41,11 +37,9 @@
             <property name="tabWidth" value="4"/>
         </module>
 
-        <!-- Nomes de classes e métodos -->
         <module name="ClassName"/>
         <module name="MethodName"/>
 
-        <!-- Regras de importação -->
         <module name="AvoidStarImport"/>
         <module name="UnusedImports"/>
     </module>
