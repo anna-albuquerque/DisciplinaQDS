@@ -8,7 +8,6 @@ public class Product {
     private BigDecimal price;
     private int stockQuantity;
 
-    // Construtor
     public Product(int productId, String name, BigDecimal price, int stockQuantity) {
         this.productId = productId;
         this.name = name;
@@ -16,7 +15,6 @@ public class Product {
         this.stockQuantity = stockQuantity;
     }
 
-    // Atualizar o estoque
     public boolean updateStock(int quantity) {
         if (stockQuantity >= quantity) {
             stockQuantity -= quantity;
@@ -28,7 +26,6 @@ public class Product {
         }
     }
 
-    // Getters
     public int getProductId() {
         return productId;
     }
@@ -45,7 +42,6 @@ public class Product {
         return stockQuantity;
     }
 
-    // Setters
     public void setProductId(int productId) {
         this.productId = productId;
     }

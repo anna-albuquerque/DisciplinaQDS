@@ -6,27 +6,24 @@ public class OrderItem {
     private int itemId;
     private Product product;
     private int quantity;
-    private BigDecimal subTotal; // Calculado no construtor
+    private BigDecimal subTotal;
 
     public OrderItem(int itemId, Product product, int quantity) {
         this.itemId = itemId;
         this.product = product;
         this.quantity = quantity;
-        this.subTotal = product.getPrice().multiply(BigDecimal.valueOf(quantity)); // Calcula o subtotal diretamente no construtor
+        this.subTotal = product.getPrice().multiply(BigDecimal.valueOf(quantity));
     }
 
     public BigDecimal getSubTotal() {
-        // Retorna o subtotal já calculado no construtor
         return subTotal;
     }
 
     public void updateQuantity(int newQuantity) {
         this.quantity = newQuantity;
-        // Atualiza o subtotal com base na nova quantidade
         this.subTotal = product.getPrice().multiply(BigDecimal.valueOf(newQuantity));
     }
 
-    // Getters
     public int getItemId() {
         return itemId;
     }
@@ -39,7 +36,6 @@ public class OrderItem {
         return quantity;
     }
 
-    // Setters
     public void setItemId(int itemId) {
         this.itemId = itemId;
     }

@@ -15,10 +15,9 @@ public class Payment {
 
     public boolean processPayment() {
         System.out.println("Processing payment of $" + amount + " on " + date);
-        return true; // Simulando pagamento bem sucedido
+        return true;
     }
 
-    // Getters
     public int getPaymentId() {
         return paymentId;
     }
@@ -31,7 +30,6 @@ public class Payment {
         return date;
     }
 
-    // Setters
     public void setPaymentId(int paymentId) {
         this.paymentId = paymentId;
     }
