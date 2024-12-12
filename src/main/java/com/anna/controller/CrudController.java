@@ -2,7 +2,6 @@ package com.anna.controller;
 
 import com.anna.services.ICustomerService;
 import com.anna.services.IOrderService;
-import org.springframework.web.bind.annotation.RestController;
 import com.anna.dto.CustomerDTO;
 import com.anna.dto.OrderDTO;
 import org.springframework.http.ResponseEntity;
@@ -57,13 +56,13 @@ public class CrudController {
     }
 
     @PutMapping("/orders/{id}")
-    public ResponseEntity<Void> updateOrder(@PathVariable int id, @RequestBody OrderDTO orderDTO) {
+    public ResponseEntity<Void> updateOrder(@PathVariable Long id, @RequestBody OrderDTO orderDTO) {
         orderService.updateOrder(id, orderDTO);
         return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/orders/{id}")
-    public ResponseEntity<Void> deleteOrder(@PathVariable int id) {
+    public ResponseEntity<Void> deleteOrder(@PathVariable Long id) {
         orderService.deleteOrder(id);
         return ResponseEntity.ok().build();
     }
