@@ -1,6 +1,5 @@
 package com.anna.controller;
 
-import com.anna.services.OrderItem;
 import com.anna.domain.Order;
 import com.anna.services.Payment;
 
@@ -21,7 +20,7 @@ public class PaymentController {
             System.out.println("Data e cliente são obrigatórios para processar um pagamento.");
             return;
         }
-        double amount = order.getTotalAmount().doubleValue(); // Assumindo que getTotalAmount() retorna BigDecimal
+        double amount = order.getTotalAmount().doubleValue(); // Ajustado para obter o valor total corretamente
         Payment payment = new Payment(paymentId, amount, date);
         boolean success = payment.processPayment(); // Ajuste para o método correto de processamento de pagamento
         if (success) {
