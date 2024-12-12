@@ -1,5 +1,6 @@
 package com.anna.controller;
 
+import com.anna.services.OrderItem;
 import com.anna.domain.Order;
 import com.anna.services.Payment;
 
@@ -20,9 +21,7 @@ public class PaymentController {
             System.out.println("Data e cliente são obrigatórios para processar um pagamento.");
             return;
         }
-        
-        // Verifique como calcular o total corretamente
-        double amount = order.getItems().stream().mapToDouble(item -> item.getPrice()).sum(); // Ajuste de exemplo para calcular o valor total
+        double amount = order.getTotalAmount(); // Ajuste para obter o valor total diretamente
         Payment payment = new Payment(paymentId, amount, date);
         boolean success = payment.processPayment(); // Ajuste para o método correto de processamento de pagamento
         if (success) {
