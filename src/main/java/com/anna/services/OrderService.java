@@ -13,10 +13,10 @@ public class OrderService {
     private BigDecimal totalAmount;
 
     public OrderService(int orderId, Date date) {
-        this.orderId = orderId;
-        this.date = date;
+//        this.orderId = orderId;
+//        this.date = date;
         this.orderItemIds = new ArrayList<>();
-        this.totalAmount = BigDecimal.ZERO;
+//        this.totalAmount = BigDecimal.ZERO;
     }
 
     public void addProduct(Product product, int quantity) {
@@ -35,7 +35,7 @@ public class OrderService {
     }
 
     public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
+//        this.customerId = customerId;
     }
 
     private void calculateTotal() {
