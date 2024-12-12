@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>com.anna</groupId>
-    <artifactId>classes</artifactId>
+    <artifactId>services</artifactId>
     <version>1.0</version>
 
     <properties>
