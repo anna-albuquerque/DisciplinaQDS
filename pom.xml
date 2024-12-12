@@ -369,7 +369,7 @@
                                 <slicings>
                                     <slicing>
                                         <name>branches</name>
-                                        <patterns>com.anna.services.*, com.anna.controller.*, com.anna.domain.*</patterns>
+                                        <patterns>com.anna.services.*, com.anna.controller.*, com.anna.domain.*, com.anna.main.*, com.anna.persistence.*</patterns>
                                         <constraints>
                                             <allow>controller, services, domain</allow>
                                             <allow>services, persistence, domain</allow>
