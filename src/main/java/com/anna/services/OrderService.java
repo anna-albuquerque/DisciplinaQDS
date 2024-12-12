@@ -6,11 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 public class OrderService {
-    private Long customerId;
-    private int orderId;
-    private Date date;
     private List<Long> orderItemIds;
-    private BigDecimal totalAmount;
 
     public OrderService(int orderId, Date date) {
         this.orderItemIds = new ArrayList<>();
