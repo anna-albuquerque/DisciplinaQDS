@@ -1,117 +1,69 @@
 package com.anna.controller;
 
-import com.anna.domain.Customer;
-import com.anna.domain.Order;
-import com.anna.services.Product;
-import com.anna.services.OrderItem;
+import com.anna.dto.CustomerDTO;
+import com.anna.dto.OrderDTO;
+import com.anna.service.ICustomerService;
+import com.anna.service.IOrderService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
+@RestController
+@RequestMapping("/crud")
 public class CrudController {
-    private List<Customer> customers = new ArrayList<>();
-    private List<Order> orders = new ArrayList<>();
+
+    private final ICustomerService customerService;
+    private final IOrderService orderService;
+
+    public CrudController(ICustomerService customerService, IOrderService orderService) {
+        this.customerService = customerService;
+        this.orderService = orderService;
+    }
 
     // --- Operações para Customer ---
 
-    // Criar um novo cliente
-    public void createCustomer(String name, String email, String address, String phone) {
-        if (name == null || email == null) {
-            System.out.println("Nome e e-mail são obrigatórios para criar um cliente.");
-            return;
-        }
-        // Ajuste: Criando uma nova instância de Customer com os parâmetros necessários
-        Customer customer = new Customer(name, email, address);
-        customers.add(customer);
+    @PostMapping("/customers")
+    public ResponseEntity<Void> createCustomer(@RequestBody CustomerDTO customerDTO) {
+        customerService.createCustomer(customerDTO);
+        return ResponseEntity.ok().build();
     }
 
-    // Ler todos os clientes
-    public void readCustomers() {
-        System.out.println("Lista de Clientes:");
-        for (Customer customer : customers) {
-            System.out.println("ID: " + customer.getId() + ", Nome: " + customer.getName() + ", Email: " + customer.getEmail());
-        }
+    @GetMapping("/customers")
+    public ResponseEntity<List<CustomerDTO>> getCustomers() {
+        List<CustomerDTO> customers = customerService.getCustomers();
+        return ResponseEntity.ok(customers);
     }
 
-    // Atualizar um cliente existente
-    public void updateCustomer(Long id, String newName, String newEmail) {
-        for (Customer customer : customers) {
-            if (customer.getId().equals(id)) {
-                customer.setName(newName);
-                customer.setEmail(newEmail);
-                System.out.println("Cliente atualizado: " + newName);
-                return;
-            }
-        }
-        System.out.println("Cliente com ID " + id + " não encontrado.");
+    @PutMapping("/customers/{id}")
+    public ResponseEntity<Void> updateCustomer(@PathVariable Long id, @RequestBody CustomerDTO customerDTO) {
+        customerService.updateCustomer(id, customerDTO);
+        return ResponseEntity.ok().build();
     }
 
-    // Deletar um cliente
-    public void deleteCustomer(Long id) {
-        customers.removeIf(customer -> customer.getId().equals(id));
-        System.out.println("Cliente com ID " + id + " deletado.");
+    @DeleteMapping("/customers/{id}")
+    public ResponseEntity<Void> deleteCustomer(@PathVariable Long id) {
+        customerService.deleteCustomer(id);
+        return ResponseEntity.ok().build();
     }
 
     // --- Operações para Order ---
 
-    // Criar um novo pedido
-    public void createOrder(Customer customer) {
-        if (customer == null) {
-            System.out.println("Cliente é obrigatório para criar um pedido.");
-            return;
-        }
-
-        int orderId = orders.size() + 1; // Ajuste: Criação de pedido sequencial
-        String date = new Date().toString(); // Obtendo a data atual como uma string
-
-        // Ajuste: Criando uma nova instância de Order com os parâmetros necessários
-        Order order = new Order(orderId, date, BigDecimal.ZERO, customer, new ArrayList<>());
-        orders.add(order); // Adicionando o pedido à lista de pedidos
-
-        // Adicionando produtos ao pedido
-        Product product = new Product(1, "Produto Exemplo", BigDecimal.valueOf(100.0), 10);
-        int quantity = 2;
-        order.addProduct(product, quantity); // Supondo que o método 'addProduct' aceite um produto e uma quantidade
+    @PostMapping("/orders")
+    public ResponseEntity<Void> createOrder(@RequestBody OrderDTO orderDTO) {
+        orderService.createOrder(orderDTO);
+        return ResponseEntity.ok().build();
     }
 
-    // Atualizar um pedido existente (exemplo: adicionar produtos)
-    public void updateOrder(int orderId, Product product, int quantity) {
-        if (product == null || quantity <= 0) {
-            System.out.println("Produto inválido ou quantidade não positiva.");
-            return;
-        }
-        for (Order order : orders) {
-            if (order.getOrderId() == orderId) {
-                order.addProduct(product, quantity);
-                System.out.println("Produto adicionado ao pedido ID: " + orderId);
-                return;
-            }
-        }
-        System.out.println("Pedido com ID " + orderId + " não encontrado.");
+    @PutMapping("/orders/{id}")
+    public ResponseEntity<Void> updateOrder(@PathVariable int id, @RequestBody OrderDTO orderDTO) {
+        orderService.updateOrder(id, orderDTO);
+        return ResponseEntity.ok().build();
     }
 
-    // Deletar um pedido
-    public void deleteOrder(int orderId) {
-        orders.removeIf(order -> order.getOrderId() == orderId);
-        System.out.println("Pedido com ID " + orderId + " deletado.");
-    }
-
-    // Métodos auxiliares para obter clientes e pedidos
-    public Customer getCustomerById(Long id) {
-        for (Customer customer : customers) {
-            if (customer.getId().equals(id)) {
-                return customer;
-            }
-        }
-        return null;
-    }
-
-    public Order getOrderById(int orderId) {
-        for (Order order : orders) {
-            if (order.getOrderId() == orderId) return order;
-        }
-        return null;
+    @DeleteMapping("/orders/{id}")
+    public ResponseEntity<Void> deleteOrder(@PathVariable int id) {
+        orderService.deleteOrder(id);
+        return ResponseEntity.ok().build();
     }
 }

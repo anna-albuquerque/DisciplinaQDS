@@ -2,12 +2,14 @@
 /workspaces/DisciplinaQDS/src/main/java/com/anna/controller/PaymentController.java
 /workspaces/DisciplinaQDS/src/main/java/com/anna/controller/ProductController.java
 /workspaces/DisciplinaQDS/src/main/java/com/anna/domain/Customer.java
-/workspaces/DisciplinaQDS/src/main/java/com/anna/domain/DomainCustomer.java
+/workspaces/DisciplinaQDS/src/main/java/com/anna/domain/CustomerDTO.java
 /workspaces/DisciplinaQDS/src/main/java/com/anna/domain/Order.java
+/workspaces/DisciplinaQDS/src/main/java/com/anna/domain/OrderDTO.java
 /workspaces/DisciplinaQDS/src/main/java/com/anna/main/Main.java
 /workspaces/DisciplinaQDS/src/main/java/com/anna/persistence/CustomerRepository.java
 /workspaces/DisciplinaQDS/src/main/java/com/anna/persistence/OrderRepository.java
 /workspaces/DisciplinaQDS/src/main/java/com/anna/services/CustomerService.java
+/workspaces/DisciplinaQDS/src/main/java/com/anna/services/DTO.java
 /workspaces/DisciplinaQDS/src/main/java/com/anna/services/OrderItem.java
 /workspaces/DisciplinaQDS/src/main/java/com/anna/services/OrderService.java
 /workspaces/DisciplinaQDS/src/main/java/com/anna/services/Payment.java

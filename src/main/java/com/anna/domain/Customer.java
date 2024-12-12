@@ -1,6 +1,15 @@
+package com.anna.domain;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "customers")
 public class Customer {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -11,13 +20,11 @@ public class Customer {
     @Email(message = "Invalid email format")
     private String email;
 
-    // Remova a referência direta para Order
-    // Use apenas IDs dos pedidos
     @ElementCollection
     private List<Long> orderIds = new ArrayList<>();
 
-    // Método para adicionar ID de pedido
     public void addOrderId(Long orderId) {
         this.orderIds.add(orderId);
     }
+
 }
