@@ -1,6 +1,6 @@
 package com.anna.services;
 
-import com.anna.dto.CustomerDTO;
+import com.anna.domain.CustomerDTO;
 import java.util.List;
 
 public interface ICustomerService {

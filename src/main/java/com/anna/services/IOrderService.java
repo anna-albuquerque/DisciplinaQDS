@@ -1,6 +1,6 @@
 package com.anna.services;
 
-import com.anna.dto.OrderDTO;
+import com.anna.domain.OrderDTO;
 import java.util.List;
 
 public interface IOrderService {
