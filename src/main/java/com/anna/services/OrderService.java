@@ -40,6 +40,6 @@ public class OrderService {
     }
 
     public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
+//        this.customerId = customerId;
     }
 }
