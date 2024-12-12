@@ -9,6 +9,8 @@
 /workspaces/DisciplinaQDS/src/main/java/com/anna/persistence/CustomerRepository.java
 /workspaces/DisciplinaQDS/src/main/java/com/anna/persistence/OrderRepository.java
 /workspaces/DisciplinaQDS/src/main/java/com/anna/services/CustomerService.java
+/workspaces/DisciplinaQDS/src/main/java/com/anna/services/ICustomerService.java
+/workspaces/DisciplinaQDS/src/main/java/com/anna/services/IOrderService.java
 /workspaces/DisciplinaQDS/src/main/java/com/anna/services/OrderItem.java
 /workspaces/DisciplinaQDS/src/main/java/com/anna/services/OrderService.java
 /workspaces/DisciplinaQDS/src/main/java/com/anna/services/Payment.java
