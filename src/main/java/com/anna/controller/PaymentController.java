@@ -21,7 +21,7 @@ public class PaymentController {
             System.out.println("Data e cliente são obrigatórios para processar um pagamento.");
             return;
         }
-        double amount = order.getTotalAmount(); // Ajuste para obter o valor total diretamente
+        double amount = order.getTotalAmount().doubleValue(); // Ajuste para obter o valor total diretamente
         Payment payment = new Payment(paymentId, amount, date);
         boolean success = payment.processPayment(); // Ajuste para o método correto de processamento de pagamento
         if (success) {
