@@ -2,8 +2,8 @@ package com.anna.controller;
 
 import com.anna.services.ICustomerService;
 import com.anna.services.IOrderService;
-import com.anna.dto.CustomerDTO;
-import com.anna.dto.OrderDTO;
+import com.anna.domain.CustomerDTO;
+import com.anna.domain.OrderDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
