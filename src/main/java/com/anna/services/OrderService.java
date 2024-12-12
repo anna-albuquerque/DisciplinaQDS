@@ -32,9 +32,9 @@ public class OrderService {
 
     private BigDecimal totalAmount;
     private void calculateTotal() {
-        this.totalAmount = orderItemIds.stream()
-                .map(orderItemId -> new OrderItem(orderItemId.intValue(), null, 0).getSubTotal());
-    //            .reduce(BigDecimal.ZERO, BigDecimal::add);
+        this.totalAmount = orderItemIds.stream();
+//                .map(orderItemId -> new OrderItem(orderItemId.intValue(), null, 0).getSubTotal());
+//                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
     
 }
