@@ -34,7 +34,7 @@ public class OrderService {
     private void calculateTotal() {
         this.totalAmount = orderItemIds.stream()
                 .map(orderItemId -> new OrderItem(orderItemId.intValue(), null, 0).getSubTotal())
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    //            .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
     
 }
