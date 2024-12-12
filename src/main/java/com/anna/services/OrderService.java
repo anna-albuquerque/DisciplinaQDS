@@ -7,9 +7,11 @@ import java.util.List;
 
 public class OrderService {
     private List<Long> orderItemIds;
+    private BigDecimal totalAmount;
 
     public OrderService(int orderId, Date date) {
         this.orderItemIds = new ArrayList<>();
+        this.totalAmount = BigDecimal.ZERO; // Initialize totalAmount here
     }
 
     public void addProduct(Product product, int quantity) {
@@ -36,7 +38,8 @@ public class OrderService {
     public BigDecimal getTotalAmount() {
         return totalAmount;
     }
-    
+
     public void setCustomerId(Long customerId) {
-    } 
+        this.customerId = customerId;
+    }
 }
