@@ -505,7 +505,7 @@
                                             <exclude>**/ignore-me.puml</exclude>
                                         </excludes>
                                     </sources>
-                                    <outputDirectory>${project.build.directory}/generate-diagrams</outputDirectory>
+                                    <outputDirectory>${basedir}/src/main/plantuml/generate-diagrams</outputDirectory>
                                     <formats>
                                         <format>png</format>
                                     </formats>
