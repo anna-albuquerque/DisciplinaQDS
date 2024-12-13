@@ -3,48 +3,53 @@ package com.anna.services;
 import java.math.BigDecimal;
 
 public class OrderItem {
-    private int itemId;
-    private Product product;
-    private int quantity;
-    private BigDecimal subTotal;
 
-    public OrderItem(int itemId, Product product, int quantity) {
-        this.itemId = itemId;
-        this.product = product;
-        this.quantity = quantity;
-        this.subTotal = product.getPrice().multiply(BigDecimal.valueOf(quantity));
-    }
+	private int itemId;
 
-    public BigDecimal getSubTotal() {
-        return subTotal;
-    }
+	private Product product;
 
-    public void updateQuantity(int newQuantity) {
-        this.quantity = newQuantity;
-        this.subTotal = product.getPrice().multiply(BigDecimal.valueOf(newQuantity));
-    }
+	private int quantity;
 
-    public int getItemId() {
-        return itemId;
-    }
+	private BigDecimal subTotal;
 
-    public Product getProduct() {
-        return product;
-    }
+	public OrderItem(int itemId, Product product, int quantity) {
+		this.itemId = itemId;
+		this.product = product;
+		this.quantity = quantity;
+		this.subTotal = product.getPrice().multiply(BigDecimal.valueOf(quantity));
+	}
 
-    public int getQuantity() {
-        return quantity;
-    }
+	public BigDecimal getSubTotal() {
+		return subTotal;
+	}
 
-    public void setItemId(int itemId) {
-        this.itemId = itemId;
-    }
+	public void updateQuantity(int newQuantity) {
+		this.quantity = newQuantity;
+		this.subTotal = product.getPrice().multiply(BigDecimal.valueOf(newQuantity));
+	}
 
-    public void setProduct(Product product) {
-        this.product = product;
-    }
+	public int getItemId() {
+		return itemId;
+	}
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
+	public Product getProduct() {
+		return product;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setItemId(int itemId) {
+		this.itemId = itemId;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
 }

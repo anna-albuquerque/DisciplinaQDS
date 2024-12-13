@@ -8,40 +8,42 @@ import java.util.List;
 @Entity
 @Table(name = "orders")
 public class Order {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long orderId;
 
-    private Long customerId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long orderId;
 
-    @ElementCollection
-    private List<Long> orderItemIds = new ArrayList<>();
+	private Long customerId;
 
-    private BigDecimal totalAmount; // Adicionei um campo para o totalAmount
+	@ElementCollection
+	private List<Long> orderItemIds = new ArrayList<>();
 
-    public Long getOrderId() {
-        return orderId;
-    }
+	private BigDecimal totalAmount; // Adicionei um campo para o totalAmount
 
-    public Long getCustomerId() {
-        return customerId;
-    }
+	public Long getOrderId() {
+		return orderId;
+	}
 
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
-    }
+	public Long getCustomerId() {
+		return customerId;
+	}
 
-    public BigDecimal getTotalAmount() {
-        return totalAmount;
-    }
+	public void setCustomerId(Long customerId) {
+		this.customerId = customerId;
+	}
 
-    public void setTotalAmount(BigDecimal totalAmount) {
-        this.totalAmount = totalAmount;
-    }
+	public BigDecimal getTotalAmount() {
+		return totalAmount;
+	}
 
-    public void addOrderItemId(Long orderItemId) {
-        this.orderItemIds.add(orderItemId);
-    }
+	public void setTotalAmount(BigDecimal totalAmount) {
+		this.totalAmount = totalAmount;
+	}
 
-    // Outros atributos e métodos relacionados ao pedido
+	public void addOrderItemId(Long orderItemId) {
+		this.orderItemIds.add(orderItemId);
+	}
+
+	// Outros atributos e métodos relacionados ao pedido
+
 }
