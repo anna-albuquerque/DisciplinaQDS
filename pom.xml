@@ -491,7 +491,7 @@
                         <executions>
                             <execution>
                                 <id>generate-diagrams</id>
-                                <phase>generate-resources</phase>
+                                <phase>generate-test-sources</phase>
                                 <goals>
                                     <goal>generate</goal>
                                 </goals>
