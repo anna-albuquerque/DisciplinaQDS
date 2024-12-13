@@ -57,7 +57,7 @@ jobs:
         uses: actions/upload-artifact@v4.4.3 #usar a action upload-artifact
         with:
           name: uml-diagrams # Nome do artefato
-          path: ${project.build.directory}/generate-diagrams **/*.png # Caminho para o arquivo a ser enviado
+          path: target/generate-diagrams **/*.png # Caminho para o arquivo a ser enviado
 
       - name: Decycle
         run: ./mvnw -B -Pdecycle -DskipTests verify
