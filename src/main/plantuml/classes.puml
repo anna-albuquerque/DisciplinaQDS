@@ -1,0 +1,57 @@
+@startuml
+
+package com.anna.main {
+    class Main
+}
+
+package com.anna.controller {
+    class CrudController
+    class PaymentController
+    class ProductController
+}
+
+package com.anna.domain {
+    class Customer
+    class CustomerDTO
+    class Order
+    class OrderDTO
+}
+
+package com.anna.persistence {
+    class CustomerRepository
+    class OrderRepository
+}
+
+package com.anna.services {
+    class CustomerService
+    class ICustomerService
+    class IOrderService
+    class OrderItem
+    class OrderService
+    class Payment
+    class Product
+}
+
+Main ..> CrudController : "initializes"
+Main ..> PaymentController : "initializes"
+Main ..> ProductController : "initializes"
+
+CrudController ..> CustomerService : "uses"
+CrudController ..> OrderService : "uses"
+PaymentController ..> Payment : "handles"
+ProductController ..> Product : "manages"
+
+CustomerService ..> CustomerRepository : "depends on"
+CustomerService ..> Customer : "manipulates"
+OrderService ..> OrderRepository : "depends on"
+OrderService ..> Order : "manipulates"
+
+CustomerRepository ..> Customer : "persists"
+OrderRepository ..> Order : "persists"
+
+Order ..> OrderItem : "contains"
+Customer ..> Order : "places"
+CustomerDTO ..> Customer : "represents"
+OrderDTO ..> Order : "represents"
+
+@enduml
