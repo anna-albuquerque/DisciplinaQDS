@@ -464,16 +464,20 @@
                         <executions>
                             <execution>
                                 <id>generate-diagrams</id>
+                                <phase>generate-resources</phase>
                                 <goals>
                                     <goal>generate</goal>
                                 </goals>
                                 <phase>generate-test-sources</phase>
                                 <configuration>
                                     <sources>
-                                        <directory>target/generated-docs</directory>
+                                        <directory>${basedir}/src/main/plantuml</directory>
                                         <includes>
                                             <include>**/*.puml</include>
                                         </includes>
+                                        <excludes>
+                                            <exclude>**/ignore-me.puml</exclude>
+                                        </excludes>
                                     </sources>
                                     <outputDirectory>${project.build.directory}/generate-diagrams</outputDirectory>
                                     <formats>
