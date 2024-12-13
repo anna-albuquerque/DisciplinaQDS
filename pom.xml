@@ -468,7 +468,6 @@
                                 <goals>
                                     <goal>generate</goal>
                                 </goals>
-                                <phase>generate-test-sources</phase>
                                 <configuration>
                                     <sources>
                                         <directory>${basedir}/src/main/plantuml</directory>
