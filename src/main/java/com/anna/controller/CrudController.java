@@ -13,57 +13,59 @@ import java.util.List;
 @RequestMapping("/crud")
 public class CrudController {
 
-    private final ICustomerService customerService;
-    private final IOrderService orderService;
+	private final ICustomerService customerService;
 
-    public CrudController(ICustomerService customerService, IOrderService orderService) {
-        this.customerService = customerService;
-        this.orderService = orderService;
-    }
+	private final IOrderService orderService;
 
-    // --- Operações para Customer ---
+	public CrudController(ICustomerService customerService, IOrderService orderService) {
+		this.customerService = customerService;
+		this.orderService = orderService;
+	}
 
-    @PostMapping("/customers")
-    public ResponseEntity<Void> createCustomer(@RequestBody CustomerDTO customerDTO) {
-        customerService.createCustomer(customerDTO);
-        return ResponseEntity.ok().build();
-    }
+	// --- Operações para Customer ---
 
-    @GetMapping("/customers")
-    public ResponseEntity<List<CustomerDTO>> getCustomers() {
-        List<CustomerDTO> customers = customerService.getCustomers();
-        return ResponseEntity.ok(customers);
-    }
+	@PostMapping("/customers")
+	public ResponseEntity<Void> createCustomer(@RequestBody CustomerDTO customerDTO) {
+		customerService.createCustomer(customerDTO);
+		return ResponseEntity.ok().build();
+	}
 
-    @PutMapping("/customers/{id}")
-    public ResponseEntity<Void> updateCustomer(@PathVariable Long id, @RequestBody CustomerDTO customerDTO) {
-        customerService.updateCustomer(id, customerDTO);
-        return ResponseEntity.ok().build();
-    }
+	@GetMapping("/customers")
+	public ResponseEntity<List<CustomerDTO>> getCustomers() {
+		List<CustomerDTO> customers = customerService.getCustomers();
+		return ResponseEntity.ok(customers);
+	}
 
-    @DeleteMapping("/customers/{id}")
-    public ResponseEntity<Void> deleteCustomer(@PathVariable Long id) {
-        customerService.deleteCustomer(id);
-        return ResponseEntity.ok().build();
-    }
+	@PutMapping("/customers/{id}")
+	public ResponseEntity<Void> updateCustomer(@PathVariable Long id, @RequestBody CustomerDTO customerDTO) {
+		customerService.updateCustomer(id, customerDTO);
+		return ResponseEntity.ok().build();
+	}
 
-    // --- Operações para Order ---
+	@DeleteMapping("/customers/{id}")
+	public ResponseEntity<Void> deleteCustomer(@PathVariable Long id) {
+		customerService.deleteCustomer(id);
+		return ResponseEntity.ok().build();
+	}
 
-    @PostMapping("/orders")
-    public ResponseEntity<Void> createOrder(@RequestBody OrderDTO orderDTO) {
-        orderService.createOrder(orderDTO);
-        return ResponseEntity.ok().build();
-    }
+	// --- Operações para Order ---
 
-    @PutMapping("/orders/{id}")
-    public ResponseEntity<Void> updateOrder(@PathVariable Long id, @RequestBody OrderDTO orderDTO) {
-        orderService.updateOrder(id, orderDTO);
-        return ResponseEntity.ok().build();
-    }
+	@PostMapping("/orders")
+	public ResponseEntity<Void> createOrder(@RequestBody OrderDTO orderDTO) {
+		orderService.createOrder(orderDTO);
+		return ResponseEntity.ok().build();
+	}
 
-    @DeleteMapping("/orders/{id}")
-    public ResponseEntity<Void> deleteOrder(@PathVariable Long id) {
-        orderService.deleteOrder(id);
-        return ResponseEntity.ok().build();
-    }
+	@PutMapping("/orders/{id}")
+	public ResponseEntity<Void> updateOrder(@PathVariable Long id, @RequestBody OrderDTO orderDTO) {
+		orderService.updateOrder(id, orderDTO);
+		return ResponseEntity.ok().build();
+	}
+
+	@DeleteMapping("/orders/{id}")
+	public ResponseEntity<Void> deleteOrder(@PathVariable Long id) {
+		orderService.deleteOrder(id);
+		return ResponseEntity.ok().build();
+	}
+
 }

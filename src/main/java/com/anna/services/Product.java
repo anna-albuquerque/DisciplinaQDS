@@ -3,58 +3,64 @@ package com.anna.services;
 import java.math.BigDecimal;
 
 public class Product {
-    private int productId;
-    private String name;
-    private BigDecimal price;
-    private int stockQuantity;
 
-    public Product(int productId, String name, BigDecimal price, int stockQuantity) {
-        this.productId = productId;
-        this.name = name;
-        this.price = price;
-        this.stockQuantity = stockQuantity;
-    }
+	private int productId;
 
-    public boolean updateStock(int quantity) {
-        if (stockQuantity >= quantity) {
-            stockQuantity -= quantity;
-            System.out.println("Stock updated for product: " + name);
-            return true;
-        } else {
-            System.out.println("Insufficient stock for product: " + name);
-            return false;
-        }
-    }
+	private String name;
 
-    public int getProductId() {
-        return productId;
-    }
+	private BigDecimal price;
 
-    public String getName() {
-        return name;
-    }
+	private int stockQuantity;
 
-    public BigDecimal getPrice() {
-        return price;
-    }
+	public Product(int productId, String name, BigDecimal price, int stockQuantity) {
+		this.productId = productId;
+		this.name = name;
+		this.price = price;
+		this.stockQuantity = stockQuantity;
+	}
 
-    public int getStockQuantity() {
-        return stockQuantity;
-    }
+	public boolean updateStock(int quantity) {
+		if (stockQuantity >= quantity) {
+			stockQuantity -= quantity;
+			System.out.println("Stock updated for product: " + name);
+			return true;
+		}
+		else {
+			System.out.println("Insufficient stock for product: " + name);
+			return false;
+		}
+	}
 
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
+	public int getProductId() {
+		return productId;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
+	public BigDecimal getPrice() {
+		return price;
+	}
 
-    public void setStockQuantity(int stockQuantity) {
-        this.stockQuantity = stockQuantity;
-    }
+	public int getStockQuantity() {
+		return stockQuantity;
+	}
+
+	public void setProductId(int productId) {
+		this.productId = productId;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setPrice(BigDecimal price) {
+		this.price = price;
+	}
+
+	public void setStockQuantity(int stockQuantity) {
+		this.stockQuantity = stockQuantity;
+	}
+
 }

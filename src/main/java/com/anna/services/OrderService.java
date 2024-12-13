@@ -6,40 +6,44 @@ import java.util.Date;
 import java.util.List;
 
 public class OrderService {
-    private List<Long> orderItemIds;
-    private BigDecimal totalAmount;
 
-    public OrderService(int orderId, Date date) {
-        this.orderItemIds = new ArrayList<>();
-        this.totalAmount = BigDecimal.ZERO; // Initialize totalAmount here
-    }
+	private List<Long> orderItemIds;
 
-    public void addProduct(Product product, int quantity) {
-        if (product.updateStock(quantity)) {
-            Long orderItemId = saveOrderItem(product, quantity);
-            orderItemIds.add(orderItemId);
-            calculateTotal();
-        } else {
-            System.out.println("Cannot add product " + product.getName() + " - insufficient stock.");
-        }
-    }
+	private BigDecimal totalAmount;
 
-    private Long saveOrderItem(Product product, int quantity) {
-        OrderItem item = new OrderItem(orderItemIds.size() + 1, product, quantity);
-        return (long) item.getItemId();
-    }
+	public OrderService(int orderId, Date date) {
+		this.orderItemIds = new ArrayList<>();
+		this.totalAmount = BigDecimal.ZERO; // Initialize totalAmount here
+	}
 
-    private void calculateTotal() {
-        this.totalAmount = orderItemIds.stream()
-                .map(orderItemId -> new OrderItem(orderItemId.intValue(), null, 0).getSubTotal())
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
-    }
+	public void addProduct(Product product, int quantity) {
+		if (product.updateStock(quantity)) {
+			Long orderItemId = saveOrderItem(product, quantity);
+			orderItemIds.add(orderItemId);
+			calculateTotal();
+		}
+		else {
+			System.out.println("Cannot add product " + product.getName() + " - insufficient stock.");
+		}
+	}
 
-    public BigDecimal getTotalAmount() {
-        return totalAmount;
-    }
+	private Long saveOrderItem(Product product, int quantity) {
+		OrderItem item = new OrderItem(orderItemIds.size() + 1, product, quantity);
+		return (long) item.getItemId();
+	}
 
-    public void setCustomerId(Long customerId) {
-//        this.customerId = customerId;
-    }
+	private void calculateTotal() {
+		this.totalAmount = orderItemIds.stream()
+			.map(orderItemId -> new OrderItem(orderItemId.intValue(), null, 0).getSubTotal())
+			.reduce(BigDecimal.ZERO, BigDecimal::add);
+	}
+
+	public BigDecimal getTotalAmount() {
+		return totalAmount;
+	}
+
+	public void setCustomerId(Long customerId) {
+		// this.customerId = customerId;
+	}
+
 }
