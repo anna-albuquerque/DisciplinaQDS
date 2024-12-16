@@ -1,9 +1,8 @@
 package com.anna.services;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.ArrayList;
 
 public class OrderService {
 
@@ -11,21 +10,19 @@ public class OrderService {
 
 	private BigDecimal totalAmount;
 
-	public OrderService(int orderId, Date date) {
-		this.orderItemIds = new ArrayList<>();
-		this.totalAmount = BigDecimal.ZERO; // Initialize totalAmount here
-	}
+public OrderService() {
+    this.orderItemIds = new ArrayList<>();
+}
 
-	public void addProduct(Product product, int quantity) {
-		if (product.updateStock(quantity)) {
-			Long orderItemId = saveOrderItem(product, quantity);
-			orderItemIds.add(orderItemId);
-			calculateTotal();
-		}
-		else {
-			System.out.println("Cannot add product " + product.getName() + " - insufficient stock.");
-		}
-	}
+public void addProduct(Product product, int quantity) {
+    if (product.updateStock(quantity)) {
+        Long orderItemId = saveOrderItem(product, quantity);
+        orderItemIds.add(orderItemId); // Adiciona ao orderItemIds corretamente
+        calculateTotal(); // Recalcula o total
+    } else {
+        System.out.println("Cannot add product " + product.getName() + " - insufficient stock.");
+    }
+}
 
 	private Long saveOrderItem(Product product, int quantity) {
 		OrderItem item = new OrderItem(orderItemIds.size() + 1, product, quantity);

@@ -25,8 +25,8 @@
         <checkstyle.version>10.20.1</checkstyle.version>
         <checkstyle.configLocation>${project.basedir}/src/checkconfig/checkstyle/checkstyle.xml</checkstyle.configLocation>
 
-     <!--   <maven-pmd-plugin.version>3.26.0</maven-pmd-plugin.version> -->
-     <!--   <pmd.ruleset>file:src/main/resources/pmd-ruleset.xml</pmd.ruleset> -->
+        <maven-pmd-plugin.version>3.26.0</maven-pmd-plugin.version>
+        <pmd.ruleset>src/checkconfig/pmd/pmd-ruleset.xml</pmd.ruleset>
 
         <duplicate-finder-maven-plugin.version>2.0.1</duplicate-finder-maven-plugin.version>
         <duplicate.ignoredResourcePattern>()</duplicate.ignoredResourcePattern>
@@ -197,6 +197,21 @@
                             <groupId>io.spring.javaformat</groupId>
                             <artifactId>spring-javaformat-maven-plugin</artifactId>
                             <version>${spring-javaformat.version}</version>
+                        </plugin>
+
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-pmd-plugin</artifactId>
+                            <version>${maven-pmd-plugin.version}</version>
+                            <configuration>
+                                <targetJdk>${java.source}</targetJdk>
+                                <includeTests>true</includeTests>
+                                <rulesets>
+                                    <ruleset>${pmd.ruleset}</ruleset>
+                                </rulesets>
+                                <analysisCache>true</analysisCache>
+                                <linkXRef>false</linkXRef>
+                            </configuration>
                         </plugin>
                     </plugins>
                 </pluginManagement>
@@ -512,6 +527,32 @@
                                     <verbose>true</verbose>
                                     <preserveDirectoryStructure>false</preserveDirectoryStructure>
                                 </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+                <profile>
+            <id>pmd</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-pmd-plugin</artifactId>
+                        <version>3.22.0</version>
+                        <configuration>
+                            <skip>false</skip>
+                            <printFailingErrors>true</printFailingErrors>
+                            <verbose>true</verbose>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>pmd-check</id>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
                             </execution>
                         </executions>
                     </plugin>
