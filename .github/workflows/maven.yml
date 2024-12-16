@@ -41,6 +41,9 @@ jobs:
       - name: Validate
         run: ./mvnw -B clean validate
 
+      - name: Pmd
+        run: ./mvnw -B -Ppmd validate
+
       - name: Tests
         run: ./mvnw -B verify
 
