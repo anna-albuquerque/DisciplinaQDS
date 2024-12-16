@@ -14,17 +14,15 @@ public OrderService() {
     this.orderItemIds = new ArrayList<>();
 }
 
-	public void addProduct(Product product, int quantity) {
-		if (product.updateStock(quantity)) {
-			Long orderItemId = saveOrderItem(product, quantity);
-			orderItemIds.add(orderItemId);
-			calculateTotal();
-		}
-		else {
-			System.out.println("Cannot add product " + product.getName() + " - insufficient stock.");
-		}
-		    orderItemIds.add(product.getId());
-	}
+public void addProduct(Product product, int quantity) {
+    if (product.updateStock(quantity)) {
+        Long orderItemId = saveOrderItem(product, quantity);
+        orderItemIds.add(orderItemId); // Adiciona ao orderItemIds corretamente
+        calculateTotal(); // Recalcula o total
+    } else {
+        System.out.println("Cannot add product " + product.getName() + " - insufficient stock.");
+    }
+}
 
 	private Long saveOrderItem(Product product, int quantity) {
 		OrderItem item = new OrderItem(orderItemIds.size() + 1, product, quantity);
