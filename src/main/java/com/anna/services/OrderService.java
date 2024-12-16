@@ -11,10 +11,10 @@ public class OrderService {
 
 	private BigDecimal totalAmount;
 
-	public OrderService(int orderId, Date date) {
-		this.orderItemIds = new ArrayList<>();
-		this.totalAmount = BigDecimal.ZERO; // Initialize totalAmount here
-	}
+//	public OrderService(int orderId, Date date) {
+//		this.orderItemIds = new ArrayList<>();
+//		this.totalAmount = BigDecimal.ZERO; // Initialize totalAmount here
+//	}
 
 	public void addProduct(Product product, int quantity) {
 		if (product.updateStock(quantity)) {
