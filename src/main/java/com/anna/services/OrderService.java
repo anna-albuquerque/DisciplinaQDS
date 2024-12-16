@@ -9,10 +9,9 @@ public class OrderService {
 
 	private BigDecimal totalAmount;
 
-//	public OrderService(int orderId, Date date) {
-//		this.orderItemIds = new ArrayList<>();
-//		this.totalAmount = BigDecimal.ZERO; // Initialize totalAmount here
-//	}
+public OrderService() {
+    this.orderItemIds = new ArrayList<>();
+}
 
 	public void addProduct(Product product, int quantity) {
 		if (product.updateStock(quantity)) {
@@ -23,6 +22,7 @@ public class OrderService {
 		else {
 			System.out.println("Cannot add product " + product.getName() + " - insufficient stock.");
 		}
+		    orderItemIds.add(product.getId());
 	}
 
 	private Long saveOrderItem(Product product, int quantity) {
