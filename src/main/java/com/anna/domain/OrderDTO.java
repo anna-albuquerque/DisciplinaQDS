@@ -1,4 +1,4 @@
-package com.anna.DTO;
+package com.anna.domain;
 
 import java.math.BigDecimal;
 import java.util.Date;
