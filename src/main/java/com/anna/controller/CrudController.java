@@ -6,7 +6,6 @@ import com.anna.domain.CustomerDTO;
 import com.anna.domain.OrderDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -14,16 +13,13 @@ import java.util.List;
 public class CrudController {
 
 	private final ICustomerService customerService;
-
 	private final IOrderService orderService;
-
 	public CrudController(ICustomerService customerService, IOrderService orderService) {
 		this.customerService = customerService;
 		this.orderService = orderService;
 	}
 
 	// --- Operações para Customer ---
-
 	@PostMapping("/customers")
 	public ResponseEntity<Void> createCustomer(@RequestBody CustomerDTO customerDTO) {
 		customerService.createCustomer(customerDTO);
@@ -49,7 +45,6 @@ public class CrudController {
 	}
 
 	// --- Operações para Order ---
-
 	@PostMapping("/orders")
 	public ResponseEntity<Void> createOrder(@RequestBody OrderDTO orderDTO) {
 		orderService.createOrder(orderDTO);
@@ -67,5 +62,4 @@ public class CrudController {
 		orderService.deleteOrder(id);
 		return ResponseEntity.ok().build();
 	}
-
 }

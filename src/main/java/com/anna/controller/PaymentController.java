@@ -2,7 +2,6 @@ package com.anna.controller;
 
 import com.anna.domain.Order;
 import com.anna.services.Payment;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,7 +9,6 @@ import java.util.List;
 public class PaymentController {
 
 	private List<Payment> payments;
-
 	public PaymentController() {
 		this.payments = new ArrayList<>();
 	}
@@ -42,5 +40,4 @@ public class PaymentController {
 					+ ", Data: " + payment.getDate());
 		}
 	}
-
 }
