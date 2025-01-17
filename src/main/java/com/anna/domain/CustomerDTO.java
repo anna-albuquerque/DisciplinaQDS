@@ -1,4 +1,4 @@
 package com.anna.domain;
 
-public class CustomerDTO {
+//public class CustomerDTO {
 }
