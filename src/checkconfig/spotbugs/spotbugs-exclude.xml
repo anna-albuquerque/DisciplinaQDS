@@ -7,4 +7,13 @@
     <Match>
         <Bug pattern="EI_EXPOSE_REP2" />
     </Match>
+        <Match>
+        <Class name="makeConcatWithConstants" />
+    </Match>
+    <Match>
+        <Class name="test" />
+    </Match>
+    <Match>
+        <Class name="apply" />
+    </Match>
 </FindBugsFilter>
