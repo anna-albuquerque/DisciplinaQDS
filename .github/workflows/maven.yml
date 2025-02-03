@@ -70,3 +70,9 @@ jobs:
 
       - name: Spotbugs
         run: ./mvnw -B -Pspotbugs -DskipTests process-test-classes
+
+      - name: Upload Dependency Check Report as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dependency-check-report
+          path: target/dependency-check-report.html
