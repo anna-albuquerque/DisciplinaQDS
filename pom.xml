@@ -121,6 +121,42 @@
     <build>
         <pluginManagement>
             <plugins>
+
+                <plugin>
+                    <groupId>org.owasp</groupId>
+                    <artifactId>dependency-check-maven</artifactId>
+                    <version>7.0.0</version> <!-- Verifique se esta versão é a mais recente -->
+                    <executions>
+                        <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                    <!-- Plugin para adicionar o relatório ao repositório de artifacts -->
+                <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                    <goals>
+                        <goal>install</goal>
+                    </goals>
+                    <phase>install</phase>
+                    <configuration>
+                        <files>
+                        <file>
+                            <directory>${project.build.directory}</directory>
+                            <includes>dependency-check-report.html</includes>
+                        </file>
+                        </files>
+                    </configuration>
+                    </execution>
+                </executions>
+                </plugin>
+
                 <plugin>
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
