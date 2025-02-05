@@ -79,3 +79,13 @@ jobs:
         with:
           name: dependency-check-report
           path: target/dependency-check-report.html
+
+      - name: Rodar Análise de Dependências Maven 
+        run: mvn snyk:test
+
+      - name: Falhar build se houver vulnerabilidades críticas
+        run: |
+          if grep -q "CRITICAL" target/snyk-report.json; then
+            echo "🚨 Vulnerabilidades críticas encontradas! 🚨"
+            exit 1
+          fi
