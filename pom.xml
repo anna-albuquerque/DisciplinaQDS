@@ -132,13 +132,6 @@
                           <goal>check</goal>
                       </goals>
                   </execution>
-                  <reportSets>
-                    <reportSet>
-                        <reports>
-                            <report>aggregate</report>
-                        </reports>
-                    </reportSet>
-                </reportSets>
               </executions>
             </plugin>
                     <!-- Plugin para adicionar o relatório ao repositório de artifacts -->
