@@ -5,15 +5,31 @@ updates:
     target-branch: "main"
     schedule:
       interval: daily
+    labels:
+      - "dependencies"
+      - "automated"
+    groups:
+      maven-dependencies:
+        patterns:
+          - "*"
+        update-types:
+          - minor
+          - patch
 
   - package-ecosystem: "github-actions"
     directory: "/"
     target-branch: "main"
     schedule:
-      interval: "weekly"
+      interval: weekly
+    labels:
+      - "ci/cd"
+      - "automated"
 
   - package-ecosystem: "devcontainers"
     directory: "/"
     target-branch: "main"
     schedule:
-      interval: "weekly"
+      interval: weekly
+    labels:
+      - "devcontainers"
+      - "automated"
