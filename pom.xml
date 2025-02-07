@@ -123,17 +123,21 @@
             <plugins>
 
             <plugin>
-              <groupId>org.owasp</groupId>
-              <artifactId>dependency-check-maven</artifactId>
-              <version>12.0.2</version>
-              <executions>
-                  <execution>
-                      <goals>
-                          <goal>check</goal>
-                      </goals>
-                  </execution>
-              </executions>
+                  <groupId>org.owasp</groupId>
+                  <artifactId>dependency-check-maven</artifactId>
+                  <version>12.0.2</version>
+                           <configuration>
+                                    <apiKey>${env.NVD_API_KEY}</apiKey>
+                           </configuration>
+                  <executions>
+                           <execution>
+                               <goals>
+                                   <goal>check</goal>
+                               </goals>
+                           </execution>
+                  </executions>
             </plugin>
+            
                     <!-- Plugin para adicionar o relatório ao repositório de artifacts -->
                 <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
