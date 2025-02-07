@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -6,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.3.5</version>
+        <version>3.2.3</version>
     </parent>
 
     <groupId>com.anna</groupId>
@@ -14,29 +15,23 @@
     <version>1.0</version>
 
     <properties>
+        <java.source>17</java.source>
         <springdoc.version>2.6.0</springdoc.version>
         <jacoco-maven-plugin.version>0.8.12</jacoco-maven-plugin.version>
-  
         <decycle-maven-plugin.version>1.2.1</decycle-maven-plugin.version>
-
         <maven-checkstyle-plugin.version>3.9.0</maven-checkstyle-plugin.version>
         <spring-javaformat.version>0.0.43</spring-javaformat.version>
-
         <checkstyle.version>10.20.1</checkstyle.version>
         <checkstyle.configLocation>${project.basedir}/src/checkconfig/checkstyle/checkstyle.xml</checkstyle.configLocation>
-
         <maven-pmd-plugin.version>3.26.0</maven-pmd-plugin.version>
         <pmd.ruleset>src/checkconfig/pmd/pmd-ruleset.xml</pmd.ruleset>
-
         <duplicate-finder-maven-plugin.version>2.0.1</duplicate-finder-maven-plugin.version>
         <duplicate.ignoredResourcePattern>()</duplicate.ignoredResourcePattern>
         <duplicate.ignoredClassPattern>()</duplicate.ignoredClassPattern>
-
         <spotbugs-maven-plugin.version>4.8.6.4</spotbugs-maven-plugin.version>
         <spotbugs-annotations.version>4.8.6</spotbugs-annotations.version>
         <spotbugs.excludeFilterFile>${project.basedir}/src/checkconfig/spotbugs/spotbugs-exclude.xml</spotbugs.excludeFilterFile> 
         <findsecbugs-plugin.version>1.13.0</findsecbugs-plugin.version>
-
         <plantuml-generator-maven-plugin.version>3.0.1</plantuml-generator-maven-plugin.version>
         <plantuml-maven-plugin.version>0.2.12</plantuml-maven-plugin.version>
     </properties>
@@ -53,7 +48,6 @@
                 <artifactId>springdoc-openapi-starter-common</artifactId>
                 <version>${springdoc.version}</version>
             </dependency>
-
             <dependency>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-annotations</artifactId>
@@ -90,7 +84,7 @@
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-actuator</artifactId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -121,54 +115,53 @@
     <build>
         <pluginManagement>
             <plugins>
-
-            <plugin>
-              <groupId>org.owasp</groupId>
-              <artifactId>dependency-check-maven</artifactId>
-              <version>12.0.2</version>
-              <executions>
-                  <execution>
-                      <goals>
-                          <goal>check</goal>
-                      </goals>
-                  </execution>
-              </executions>
-            </plugin>
-                    <!-- Plugin para adicionar o relatório ao repositório de artifacts -->
                 <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-                <version>3.1.0</version>
-                <executions>
-                    <execution>
-                    <goals>
-                        <goal>install</goal>
-                    </goals>
-                    <phase>install</phase>
-                    <configuration>
-                        <files>
-                        <file>
-                            <directory>${project.build.directory}</directory>
-                            <includes>dependency-check-report.html</includes>
-                        </file>
-                        </files>
-                    </configuration>
-                    </execution>
-                </executions>
+                    <groupId>org.owasp</groupId>
+                    <artifactId>dependency-check-maven</artifactId>
+                    <version>12.0.2</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>check</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>3.1.0</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>install</goal>
+                            </goals>
+                            <phase>install</phase>
+                            <configuration>
+                                <artifactItems>
+                                    <artifactItem>
+                                        <file>${project.build.directory}/dependency-check-report.html</file>
+                                        <type>html</type>
+                                    </artifactItem>
+                                </artifactItems>
+                            </configuration>
+                        </execution>
+                    </executions>
                 </plugin>
                      
-                  <plugin>
-                      <groupId>io.snyk</groupId>
-                      <artifactId>snyk-maven-plugin</artifactId>
-                      <version>2.2.0</version>
-                      <executions>
-                          <execution>
-                              <goals>
-                                  <goal>test</goal>
-                              </goals>
-                          </execution>
-                      </executions>
-                  </plugin>
+                <plugin>
+                    <groupId>io.snyk</groupId>
+                    <artifactId>snyk-maven-plugin</artifactId>
+                    <version>2.2.0</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>test</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
 
                 <plugin>
                     <groupId>org.jacoco</groupId>
@@ -211,7 +204,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.anna.main</mainClass> <!-- Alterne para o nome da classe principal da sua aplicação -->
+                    <mainClass>com.anna.main.Application</mainClass>
                 </configuration>
             </plugin>
 
@@ -298,7 +291,7 @@
                                 <failOnViolation>true</failOnViolation>
                                 <violationSeverity>warning</violationSeverity>
                                 <linkXRef>false</linkXRef>
-                                <skip>true</skip> <!-- Define skip como true para desativar false para ativar-->
+                                <skip>true</skip>
                             </configuration>
                         </plugin>
                     </plugins>
@@ -310,9 +303,9 @@
                         <executions>
                             <execution>
                                 <id>checkstyle-validation</id>
-                                <phase>none</phase> <!-- Desativa o Checkstyle validate --> 
+                                <phase>none</phase>
                                 <goals>
-                                    <goal>check</goal> 
+                                    <goal>check</goal>
                                 </goals>
                             </execution>
                         </executions>
@@ -321,34 +314,33 @@
             </build>
         </profile>
 
-
-
-<profile>
-<build>
-  <plugins>
-    <plugin>
-      <groupId>com.github.jeluard</groupId>
-      <artifactId>plantuml-maven-plugin</artifactId>
-      <version>1.2</version>
-      <configuration>
-        <sourceFiles>
-          <directory>${src}</directory>
-          <includes>
-            <include>src/main/plantuml/**/*.txt</include>
-          </includes>
-        </sourceFiles>
-      </configuration>
-      <dependencies>
-        <dependency>
-          <groupId>net.sourceforge.plantuml</groupId>
-          <artifactId>plantuml</artifactId>
-          <version>7999</version>
-        </dependency>
-      </dependencies>
-    </plugin>
-  </plugins>
-</build>
-</profile>
+        <profile>
+            <id>plantuml-alternative</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.jeluard</groupId>
+                        <artifactId>plantuml-maven-plugin</artifactId>
+                        <version>${plantuml-maven-plugin.version}</version>
+                        <configuration>
+                            <sourceFiles>
+                                <directory>${project.basedir}</directory>
+                                <includes>
+                                    <include>src/main/plantuml/**/*.txt</include>
+                                </includes>
+                            </sourceFiles>
+                        </configuration>
+                        <dependencies>
+                            <dependency>
+                                <groupId>net.sourceforge.plantuml</groupId>
+                                <artifactId>plantuml</artifactId>
+                                <version>7999</version>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
 
         <profile>
             <id>duplicate</id>
@@ -429,7 +421,7 @@
                         <artifactId>spotbugs-maven-plugin</artifactId>
                         <executions>
                             <execution>
-                                <phase>process-test-classes</phase>
+                                <phase>verify</phase>
                                 <goals>
                                     <goal>check</goal>
                                 </goals>
@@ -440,92 +432,79 @@
             </build>
         </profile>
 
-<profile>
-    <id>decycle</id>
-    <build>
-        <pluginManagement>
-            <plugins>                    
-                <plugin>
-                    <groupId>de.obqo.decycle</groupId>
-                    <artifactId>decycle-maven-plugin</artifactId>
-                    <version>${decycle-maven-plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <id>checkMain</id>
-                            <phase>verify</phase>
-                            <goals>
-                                <goal>checkMain</goal>
-                            </goals>
-                            <configuration>
-                                <slicings>
-                                    <slicing>
-                                        <name>branches</name>
-                                        <patterns>com.anna.services.*, com.anna.controller.*, com.anna.domain.*, com.anna.main.*, com.anna.persistence.*</patterns>
-                                        <constraints>
-                                            <allow>controller, services, domain</allow>
-                                            <allow>services, persistence, domain</allow>
-                                            <allow>
-                                                <one-of>controller, persistence</one-of>
-                                            </allow>
-                                            <allow>
-                                                <one-of>domain</one-of>
-                                            </allow>
-                                            <allow>
-                                                <one-of>controller</one-of>
-                                            </allow>
-                                            <allow>
-                                                <one-of>services</one-of>
-                                            </allow>
-                                            <allow>
-                                                <one-of>main</one-of>
-                                            </allow>
-                                        </constraints>
-                                    </slicing>
-                                </slicings>
-                            </configuration>
-                        </execution>
-                        <execution>
-                            <id>checkTest</id>
-                            <phase>verify</phase>
-                            <goals>
-                                <goal>checkTest</goal>
-                            </goals>
-                            <configuration>
-                                <slicings>
-                                    <slicing>
-                                        <name>branches</name>
-                                        <patterns>com.anna.services.*, com.anna.controller.*, com.anna.domain.*</patterns>
-                                        <constraints>
-                                            <allow>services, persistence</allow>
-                                            <allow>services, controller</allow>
-                                            <allow>controller, persistence</allow>
-                                            <allow>domain</allow>
-                                        </constraints>
-                                    </slicing>
-                                </slicings>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-        <plugins>
-            <plugin>
-                <groupId>de.obqo.decycle</groupId>
-                <artifactId>decycle-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
-</profile>
-
+        <profile>
+            <id>decycle</id>
+            <build>
+                <pluginManagement>
+                    <plugins>                    
+                        <plugin>
+                            <groupId>de.obqo.decycle</groupId>
+                            <artifactId>decycle-maven-plugin</artifactId>
+                            <version>${decycle-maven-plugin.version}</version>
+                            <executions>
+                                <execution>
+                                    <id>checkMain</id>
+                                    <phase>verify</phase>
+                                    <goals>
+                                        <goal>checkMain</goal>
+                                    </goals>
+                                    <configuration>
+                                        <slicings>
+                                            <slicing>
+                                                <name>branches</name>
+                                                <patterns>com.anna.services.*, com.anna.controller.*, com.anna.domain.*, com.anna.main.*, com.anna.persistence.*</patterns>
+                                                <constraints>
+                                                    <allow>controller, services, domain</allow>
+                                                    <allow>services, persistence, domain</allow>
+                                                    <allow>controller, persistence</allow>
+                                                    <allow>domain</allow>
+                                                    <allow>main</allow>
+                                                </constraints>
+                                            </slicing>
+                                        </slicings>
+                                    </configuration>
+                                </execution>
+                                <execution>
+                                    <id>checkTest</id>
+                                    <phase>verify</phase>
+                                    <goals>
+                                        <goal>checkTest</goal>
+                                    </goals>
+                                    <configuration>
+                                        <slicings>
+                                            <slicing>
+                                                <name>branches</name>
+                                                <patterns>com.anna.services.*, com.anna.controller.*, com.anna.domain.*, com.anna.persistence.*</patterns>
+                                                <constraints>
+                                                    <allow>services, persistence</allow>
+                                                    <allow>services, controller</allow>
+                                                    <allow>controller, persistence</allow>
+                                                    <allow>domain</allow>
+                                                </constraints>
+                                            </slicing>
+                                        </slicings>
+                                    </configuration>
+                                </execution>
+                            </executions>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+                <plugins>
+                    <plugin>
+                        <groupId>de.obqo.decycle</groupId>
+                        <artifactId>decycle-maven-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
 
         <profile>
             <id>plantuml</id>
             <build>
                 <plugins>
                     <plugin>
-                        <artifactId>plantuml-generator-maven-plugin</artifactId>
                         <groupId>de.elnarion.maven</groupId>
+                        <artifactId>plantuml-generator-maven-plugin</artifactId>
                         <version>${plantuml-generator-maven-plugin.version}</version>
                         <executions>
                             <execution>
@@ -537,9 +516,7 @@
                                 <configuration>
                                     <outputFilename>domain-classes-diagram.puml</outputFilename>
                                     <scanPackages>
-                                        <scanPackage>
-                                            com.anna.account.domain
-                                        </scanPackage>
+                                        <scanPackage>com.anna.domain</scanPackage>
                                     </scanPackages>
                                     <hideFields>false</hideFields>
                                     <hideMethods>true</hideMethods>
@@ -561,7 +538,7 @@
                                 </goals>
                                 <configuration>
                                     <sources>
-                                        <directory>${basedir}/src/main/plantuml</directory>
+                                        <directory>${project.basedir}/src/main/plantuml</directory>
                                         <includes>
                                             <include>**/*.puml</include>
                                         </includes>
@@ -569,7 +546,7 @@
                                             <exclude>**/ignore-me.puml</exclude>
                                         </excludes>
                                     </sources>
-                                    <outputDirectory>${basedir}/target/generate-diagrams</outputDirectory>
+                                    <outputDirectory>${project.build.directory}/generated-diagrams</outputDirectory>
                                     <formats>
                                         <format>png</format>
                                     </formats>
@@ -582,18 +559,22 @@
                 </plugins>
             </build>
         </profile>
-                <profile>
+
+        <profile>
             <id>pmd</id>
             <build>
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-pmd-plugin</artifactId>
-                        <version>3.22.0</version>
+                        <version>${maven-pmd-plugin.version}</version>
                         <configuration>
                             <skip>false</skip>
                             <printFailingErrors>true</printFailingErrors>
                             <verbose>true</verbose>
+                            <rulesets>
+                                <ruleset>${pmd.ruleset}</ruleset>
+                            </rulesets>
                         </configuration>
                         <executions>
                             <execution>
