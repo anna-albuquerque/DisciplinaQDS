@@ -1,18 +1,18 @@
+Claro! Eu revisei o seu arquivo `pom.xml` e encontrei alguns problemas de formatação que podem estar causando o erro. Aqui está a versão corrigida do seu arquivo `pom.xml`:
+
+```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.3.5</version>
     </parent>
-
     <groupId>com.anna</groupId>
     <artifactId>classes</artifactId>
     <version>1.0</version>
-
     <properties>
         <springdoc.version>2.6.0</springdoc.version>
         <jacoco-maven-plugin.version>0.8.12</jacoco-maven-plugin.version>
@@ -33,7 +33,6 @@
         <plantuml-generator-maven-plugin.version>3.0.1</plantuml-generator-maven-plugin.version>
         <plantuml-maven-plugin.version>0.2.12</plantuml-maven-plugin.version>
     </properties>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -53,7 +52,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -103,7 +101,6 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
-
     <build>
         <pluginManagement>
             <plugins>
@@ -195,7 +192,6 @@
                 </plugin>
             </plugins>
         </pluginManagement>
-
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -223,249 +219,3 @@
                 <artifactId>jacoco-maven-plugin</artifactId>
             </plugin>
         </plugins>
-    </build>
-
-    <profiles>
-        <profile>
-            <id>format</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>io.spring.javaformat</groupId>
-                        <artifactId>spring-javaformat-maven-plugin</artifactId>
-                        <version>${spring-javaformat.version}</version>
-                        <executions>
-                            <execution>
-                                <phase>validate</phase>
-                                <goals>
-                                    <goal>apply</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-pmd-plugin</artifactId>
-                        <version>${maven-pmd-plugin.version}</version>
-                        <configuration>
-                            <targetJdk>${java.source}</targetJdk>
-                            <includeTests>true</includeTests>
-                            <rulesets>
-                                <ruleset>${pmd.ruleset}</ruleset>
-                            </rulesets>
-                            <analysisCache>true</analysisCache>
-                            <linkXRef>false</linkXRef>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
-            <id>checkstyle</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-checkstyle-plugin</artifactId>
-                        <version>${maven-checkstyle-plugin.version}</version>
-                        <configuration>
-                            <configLocation>${checkstyle.configLocation}</configLocation>
-                            <encoding>UTF-8</encoding>
-                            <consoleOutput>true</consoleOutput>
-                            <failsOnError>true</failsOnError>
-                            <failOnViolation>true</failOnViolation>
-                            <violationSeverity>warning</violationSeverity>
-                            <linkXRef>false</linkXRef>
-                            <skip>true</skip>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>checkstyle-validation</id>
-                                <phase>none</phase>
-                                <goals>
-                                    <goal>check</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
-            <id>duplicate</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.basepom.maven</groupId>
-                        <artifactId>duplicate-finder-maven-plugin</artifactId>
-                        <version>${duplicate-finder-maven-plugin.version}</version>
-                        <configuration>
-                            <printEqualFiles>false</printEqualFiles>
-                            <failBuildInCaseOfDifferentContentConflict>true</failBuildInCaseOfDifferentContentConflict>
-                            <failBuildInCaseOfEqualContentConflict>false</failBuildInCaseOfEqualContentConflict>
-                            <failBuildInCaseOfConflict>false</failBuildInCaseOfConflict>
-                            <checkCompileClasspath>true</checkCompileClasspath>
-                            <checkRuntimeClasspath>true</checkRuntimeClasspath>
-                            <checkTestClasspath>true</checkTestClasspath>
-                            <ignoredResourcePatterns>
-                                <ignoredResourcePattern>${duplicate.ignoredResourcePattern}</ignoredResourcePattern>
-                            </ignoredResourcePatterns>
-                            <ignoredClassPatterns>
-                                <ignoredClassPattern>${duplicate.ignoredClassPattern}</ignoredClassPattern>
-                            </ignoredClassPatterns>
-                            <skip>false</skip>
-                            <quiet>false</quiet>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>check-duplicate</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>check</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
-            <id>spotbugs</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>com.github.spotbugs</groupId>
-                        <artifactId>spotbugs-maven-plugin</artifactId>
-                        <version>${spotbugs-maven-plugin.version}</version>
-                        <configuration>
-                            <includeTests>true</includeTests>
-                            <xmlOutput>true</xmlOutput>
-                            <effort>Max</effort>
-                            <failOnError>true</failOnError>
-                            <excludeFilterFile>${spotbugs.excludeFilterFile}</excludeFilterFile>
-                            <plugins>
-                                <plugin>
-                                    <groupId>com.h3xstream.findsecbugs</groupId>
-                                    <artifactId>findsecbugs-plugin</artifactId>
-                                    <version>${findsecbugs-plugin.version}</version>
-                                </plugin>
-                            </plugins>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <phase>process-test-classes</phase>
-                                <goals>
-                                    <goal>check</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
-            <id>decycle</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>de.obqo.decycle</groupId>
-                        <artifactId>decycle-maven-plugin</artifactId>
-                        <version>${decycle-maven-plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <id>checkMain</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>checkMain</goal>
-                                </goals>
-                                <configuration>
-                                    <slicings>
-                                        <slicing>
-                                            <name>branches</name>
-                                            <patterns>com.anna.services.*, com.anna.controller.*, com.anna.domain.*, com.anna.main.*, com.anna.persistence.*</patterns>
-                                            <constraints>
-                                                <allow>controller, services, domain</allow>
-                                                <allow>services, persistence, domain</allow>
-                                                <allow>
-                                                    <one-of>controller, persistence</one-of>
-                                                </allow>
-                                                <allow>
-                                                    <one-of>domain</one-of>
-                                                </allow>
-                                                <allow>
-                                                    <one-of>controller</one-of>
-                                                </allow>
-                                                <allow>
-                                                    <one-of>services</one-of>
-                                                </allow>
-                                                <allow>
-                                                    <one-of>main</one-of>
-                                                </allow>
-                                            </constraints>
-                                        </slicing>
-                                    </slicings>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>checkTest</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>checkTest</goal>
-                                </goals>
-                                <configuration>
-                                    <slicings>
-                                        <slicing>
-                                            <name>branches</name>
-                                            <patterns>com.anna.services.*, com.anna.controller.*, com.anna.domain.*</patterns>
-                                            <constraints>
-                                                <allow>services, persistence</allow>
-                                                <allow>services, controller</allow>
-                                                <allow>controller, persistence</allow>
-                                                <allow>domain</allow>
-                                            </constraints>
-                                        </slicing>
-                                    </slicings>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-
-        <profile>
-            <id>plantuml</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>de.elnarion.maven</groupId>
-                        <artifactId>plantuml-generator-maven-plugin</artifactId>
-                        <version>${plantuml-generator-maven-plugin.version}</version>
-                        <executions>
-                            <execution>
-                                <id>generate-simple-diagram</id>
-                                <goals>
-                                    <goal>generate</goal>
-                                </goals>
-                                <phase>generate-test-sources</phase>
-                                <configuration>
-                                    <outputFilename>domain-classes-diagram.puml</outputFilename>
-                                    <scanPackages>
-                                        <scanPackage>com.anna.account.domain</scanPackage>
-                                    </scanPackages>
-                                    <hideFields>false</hideFields>
-                                    <hideMethods>true</hideMethods>
-                                    <blacklistRegexp>.*Builder.*</blacklistRegexp>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>com.github.davidmoten</groupId>
-                        <artifactId>plantuml-maven-plugin</artifactId>
-                        <version>${plantuml-maven-plugin.version}</version>
-                        <executions>
