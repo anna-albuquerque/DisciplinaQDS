@@ -71,6 +71,9 @@ jobs:
       - name: Spotbugs
         run: ./mvnw -B -Pspotbugs -DskipTests process-test-classes
 
+      - name: SonarQube Analysis
+        run: mvn sonar:sonar -Dsonar.token=${{ secrets.SONAR_TOKEN }}
+
       - name: Rodar OWASP Dependency Check
         run: mvn org.owasp:dependency-check-maven:check
 
