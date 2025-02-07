@@ -71,9 +71,6 @@ jobs:
       - name: Spotbugs
         run: ./mvnw -B -Pspotbugs -DskipTests process-test-classes
 
-      - name: SonarQube Analysis
-        run: mvn sonar:sonar -Dsonar.token=${{ secrets.SONAR_TOKEN }}
-
       - name: Set NVD API Key
         run: echo "NVD_API_KEY=${{ secrets.NVD_API_KEY }}" >> $GITHUB_ENV
 
