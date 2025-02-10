@@ -14,6 +14,7 @@
     <version>1.0</version>
 
     <properties>
+        <java.source>21</java.source>
         <springdoc.version>2.8.4</springdoc.version>
         <jacoco-maven-plugin.version>0.8.12</jacoco-maven-plugin.version>
   
@@ -122,6 +123,31 @@
         <pluginManagement>
             <plugins>
 
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>${java.source}</source>
+                        <target>${java.source}</target>
+                        <encoding>${project.build.sourceEncoding}</encoding>
+                        <failOnWarning>true</failOnWarning>  <!-- Falha na build se tiver algo errado. -->
+                        <showDeprecation>true</showDeprecation> <!-- Mostrar se tiver cód. deprecado -->
+                        <showWarnings>true</showWarnings> <!-- Mostrar se tiver cód. deprecado -->
+                        <release>${java.source}</release>
+                        <annotationProcessorPaths>
+                            <path>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                                <version>${lombok.version}</version>
+                            </path>
+                        </annotationProcessorPaths>
+                        <compilerArgs>
+                            <arg>-Xlint:unchecked</arg>
+                        </compilerArgs>
+                    </configuration>
+                </plugin>
+                     
+                     
                 <plugin>
                     <groupId>org.owasp</groupId>
                     <artifactId>dependency-check-maven</artifactId>
