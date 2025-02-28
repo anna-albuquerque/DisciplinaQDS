@@ -14,7 +14,7 @@
     <version>1.0</version>
 
     <properties>
-        <java.source>17</java.source>
+        <java.source>21</java.source>
         <springdoc.version>2.8.4</springdoc.version>
         <jacoco-maven-plugin.version>0.8.12</jacoco-maven-plugin.version>
   
@@ -44,10 +44,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-security</artifactId>
-            </dependency>
             <dependency>
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
@@ -156,9 +152,6 @@
                     <groupId>org.owasp</groupId>
                     <artifactId>dependency-check-maven</artifactId>
                     <version>12.1.0</version> <!-- Versão mais atual -->
-                     <configuration>
-                             <nvdApiKey>cede5361-a2e2-4f4e-8da5-0db1e8856f2f</nvdApiKey>
-                    </configuration>
                     <executions>
                         <execution>
                         <goals>

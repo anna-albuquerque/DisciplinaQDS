@@ -1,6 +1,0 @@
-server:
-  ssl:
-    key-store: classpath:AnnaKeyStone.p12
-    key-store-password: Anna1987
-    key-store-type: PKCS12
-    key-alias: myserver
