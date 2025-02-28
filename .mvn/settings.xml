@@ -7,7 +7,7 @@
       <configuration>
         <ssl>
           <keyStore>${user.home}/.src/main/resources/AnnaKeyStone.p12</keyStore> 
-          <keyStorePassword>Anna1987</keyStorePassword> 
+          <keyStorePassword>${env.KEYSTORE}</keyStorePassword> 
           <keyStoreType>PKCS12</keyStoreType>
         </ssl>
       </configuration>
