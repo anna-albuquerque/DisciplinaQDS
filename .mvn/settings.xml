@@ -1,0 +1,16 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+  <servers>
+    <server>
+      <id>myserver</id> <!-- ID do servidor que requer o certificado -->
+      <configuration>
+        <ssl>
+          <keyStore>${user.home}/.src/main/resources/AnnaKeyStone.p12</keyStore> 
+          <keyStorePassword>${env.KEYSTORE}</keyStorePassword> 
+          <keyStoreType>PKCS12</keyStoreType>
+        </ssl>
+      </configuration>
+    </server>
+  </servers>
+</settings>
