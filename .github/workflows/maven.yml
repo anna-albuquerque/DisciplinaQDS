@@ -57,7 +57,7 @@ jobs:
         run: ./mvnw -B -Pplantuml generate-test-sources
 
       - name: Upload UML Diagrams #fazer o upload dos diagramas UML
-        uses: actions/upload-artifact@v4.6.1 #usar a action upload-artifact
+        uses: actions/upload-artifact@v4.6.2 #usar a action upload-artifact
         with:
           name: uml-diagrams # Nome do artefato
           path: target/generate-diagrams/classes.png # Caminho para o arquivo a ser enviado
@@ -75,7 +75,7 @@ jobs:
         run: mvn org.owasp:dependency-check-maven:check -DnvdApiKey=${{ secrets.NVD_API_KEY }}
 
       - name: Upload Dependency Check Report as artifact
-        uses: actions/upload-artifact@v4.6.1
+        uses: actions/upload-artifact@v4.6.2
         with:
           name: dependency-check-report
           path: target/dependency-check-report.html
